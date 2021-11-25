@@ -1,9 +1,9 @@
 class Todo {
-    constructor(todoText) {
+    constructor(todoText, status) {
         // id: new Date().toISOString();
         this.id = Math.random().toFixed(4).toString();
         this.text = todoText.trim();
-        this.status = 'new';
+        this.status = status;
     }
 }
 

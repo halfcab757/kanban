@@ -1,12 +1,14 @@
 import classes from './TodoList.module.css';
+import Todo from '../../../models/todo';
 
-const TodoList: React.FC<{ title: string }> = (props) => {
+import TodoItem from '../TodoItem/TodoItem';
+
+const TodoList: React.FC<{ title: string; items: Todo[] }> = (props) => {
   return (
     <div className={classes.todolist}>
       <h2>{props.title}</h2>
       <ul>
-          <li key='1'>Todo 1</li>
-          <li key='2'>Todo 2</li>
+        {props.items.length > 0 && props.items.map(item => <TodoItem title={item.text} status={item.status} key={item.id}/>)}
       </ul>
     </div>
   );

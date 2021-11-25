@@ -1,0 +1,10 @@
+.item {
+    padding: 6px;
+    margin-bottom: 6px;
+    border: 1px solid grey;
+}
+
+.actions button {
+    display: block;
+    margin-bottom: 4px;
+}
