@@ -1,3 +1,5 @@
+// enum für status verwenden oder zumindest union type
+
 class Todo {
     constructor(todoText, status) {
         // id: new Date().toISOString();

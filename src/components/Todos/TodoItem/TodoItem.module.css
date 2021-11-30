@@ -2,6 +2,13 @@
     padding: 6px;
     margin-bottom: 6px;
     border: 1px solid grey;
+    background: plum;
+    text-align: center;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
 }
 
 .actions button {

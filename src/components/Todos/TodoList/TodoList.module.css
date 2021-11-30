@@ -1,7 +1,7 @@
 .todolist {
     width: 30%;
     border: 1px solid grey;
-    height: 80vh;
+    height: 70vh;
     margin: 10px;
     padding: 6px;
 }
@@ -9,4 +9,8 @@
 .todolist ul {
     list-style: none;
     padding: 0;
+}
+
+.todolist h2 {
+    text-align: center;
 }
