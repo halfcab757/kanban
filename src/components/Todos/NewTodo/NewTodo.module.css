@@ -1,0 +1,20 @@
+.form {
+    width: 90%;
+    max-width: 330px;
+    margin: 0 auto;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 12px;
+}
+
+
+

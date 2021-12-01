@@ -7,9 +7,11 @@ const DUMMY_TODOS = [
     new Todo('Finish react course', 'done')
 ];
 
-export const TodosContext = React.createContext<{items: Todo[], moveItem: (event: SyntheticEvent) => void }>({
+export const TodosContext = React.createContext<{items: Todo[], moveItem: (event: SyntheticEvent) => void, addingTodo: boolean, toggleAddTodo: () => void }>({
     items: [],
-    moveItem: (event: SyntheticEvent) => {}
+    moveItem: (event: SyntheticEvent) => {},
+    addingTodo: false,
+    toggleAddTodo: () => {}
 });
 
 // methods to work with items
@@ -20,6 +22,12 @@ export const TodosContext = React.createContext<{items: Todo[], moveItem: (event
 
 const TodosContextProvider: React.FC = (props) => {
     const [items, setItems] = useState(DUMMY_TODOS);
+
+    const [addingTodo, setAddingTodo] = useState(false);
+
+    const toggleAddHandler = () => {
+      setAddingTodo(prevState => !prevState);
+    }
 
     const moveItem = (event: any) => {
         // status updaten und zwei item-listen updaten
@@ -74,7 +82,9 @@ const TodosContextProvider: React.FC = (props) => {
 
     const initalContext = {
         items: items,
-        moveItem: moveItem
+        moveItem: moveItem,
+        addingTodo: addingTodo,
+        toggleAddTodo: toggleAddHandler
     };
 
     return (

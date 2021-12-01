@@ -1,23 +1,21 @@
+import { useContext } from 'react';
 import './App.css';
 
 import Layout from './components/layout/Layout';
 
-import Todo from './models/todo';
 import Todos from './components/Todos/Todos';
-import TodosContextProvider from './store/todos-context';
-// import Modal from './components/UI/Modal/Modal';
+import { TodosContext } from './store/todos-context';
+
+import NewTodo from './components/Todos/NewTodo/NewTodo';
 
 const App = () => {
-  const newTodo = new Todo('Look to the sky');
-  console.log(newTodo);
+  const todosCtx = useContext(TodosContext);
 
   return (
     <div className="App">
       <Layout>
-        {/* <Modal>CHILDREN</Modal> */}
-        <TodosContextProvider>
+        {todosCtx.addingTodo && <NewTodo />}
           <Todos />
-        </TodosContextProvider>
       </Layout>
     </div>
   );
