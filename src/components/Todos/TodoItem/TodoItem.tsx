@@ -1,40 +1,57 @@
-import { useContext } from 'react';
+import { Fragment, useContext } from 'react';
 
 import classes from './TodoItem.module.css';
 import Button from '../../UI/Button/Button';
 import { TodosContext } from '../../../store/todos-context';
 
-
-const TodoItem: React.FC<{ title: string; status: string }> = (props) => {
+const TodoItem: React.FC<{ title: string; status: string; id: string; }> = (props) => {
   const todosCtx = useContext(TodosContext);
 
   let actions = (
-    <div className={classes.actions}>
-      <Button type='button' color='green' clickHandler={todosCtx.moveItem}>Set to progress</Button>
-      <Button type='button' color='red' clickHandler={() => console.log('click')}>Delete</Button>
-    </div>
+    <Fragment>
+      <Button type="button" color="green" clickHandler={todosCtx.moveItem}>
+        Set to progress
+      </Button>
+      <Button
+        type="button"
+        color="red"
+        clickHandler={() => console.log('click')}
+      >
+        Delete
+      </Button>
+    </Fragment>
   );
 
   if (props.status === 'progress') {
     actions = (
-      <div className={classes.actions}>
-      <Button type='button' color='green' clickHandler={todosCtx.moveItem}>Set to done</Button>
-      <Button type='button' color='red' clickHandler={() => console.log('click')}>Delete</Button>
-      </div>
+      <Fragment>
+        <Button type="button" color="green" clickHandler={todosCtx.moveItem}>
+          Set to done
+        </Button>
+        <Button
+          type="button"
+          color="red"
+          clickHandler={() => console.log('click')}
+        >
+          Delete
+        </Button>
+      </Fragment>
     );
   }
 
   if (props.status === 'done') {
     actions = (
-      <div className={classes.actions}>
-              <Button type='button' color='green' clickHandler={todosCtx.moveItem}>Move to achievement list</Button>
-      </div>
+      <Fragment>
+        <Button type="button" color="green" clickHandler={todosCtx.moveItem}>
+          Move to achievement list
+        </Button>
+      </Fragment>
     );
   }
 
   return (
     <li>
-      <div className={classes.item}>
+      <div className={classes.item} id={props.id}>
         <h3>{props.title}</h3>
         {actions}
       </div>
