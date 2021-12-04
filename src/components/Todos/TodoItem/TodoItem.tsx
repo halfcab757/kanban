@@ -18,13 +18,13 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
 
   let actions = (
     <Fragment>
-      <Button type="button" color="green" clickHandler={todosCtx.moveItem}>
+      <Button type="button" color="green" clickHandler={todosCtx.moveItem.bind(null, props.id)}>
         Set to progress
       </Button>
       <Button
         type="button"
         color="red"
-        clickHandler={() => console.log('click')}
+        clickHandler={todosCtx.deleteTodo.bind(null, props.id)}
       >
         Delete
       </Button>
@@ -37,13 +37,13 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
   if (props.status === 'progress') {
     actions = (
       <Fragment>
-        <Button type="button" color="green" clickHandler={todosCtx.moveItem}>
+        <Button type="button" color="green" clickHandler={todosCtx.moveItem.bind(null, props.id)}>
           Set to done
         </Button>
         <Button
           type="button"
           color="red"
-          clickHandler={() => console.log('click')}
+          clickHandler={todosCtx.deleteTodo.bind(null, props.id)}
         >
           Delete
         </Button>
@@ -57,7 +57,7 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
   if (props.status === 'done') {
     actions = (
       <Fragment>
-        <Button type="button" color="green" clickHandler={todosCtx.moveItem}>
+        <Button type="button" color="green" clickHandler={todosCtx.moveItem.bind(null, props.id)}>
           Move to achievement list
         </Button>
         <Button type="button" color="red" clickHandler={toggleEditHandler}>
