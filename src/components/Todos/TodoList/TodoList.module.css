@@ -1,15 +1,39 @@
 .todolist {
-    width: 30%;
-    border: 1px solid grey;
+    width: 100%;
+    background: lightyellow;
+    /* border: 1px solid g; */
     /* height: 70vh; */
-    min-height: 80vh;
-    margin: 10px;
+    min-height: 10vh;
+    margin: 16px;
     padding: 6px;
+}
+
+.todolist h2 {
+    font-weight: lighter;
+    font-size: 24px;
+    margin: 12px 0;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+@media (min-width: 500px) {
+    .todolist {
+        width: 30%;
+        /* border: 1px solid grey; */
+        /* height: 70vh; */
+        min-height: 70vh;
+        /* margin: 10px;
+        padding: 6px; */
+    }
 }
 
 .todolist ul {
     list-style: none;
-    padding: 0;
+    padding: 4px 12px;
+}
+
+.todolist ul li {
+    margin-bottom: 12px;
 }
 
 .todolist h2 {

@@ -9,8 +9,10 @@ const Navigation: React.FC = () => {
 
   return (
     <div className={classes.navigation}>
-      NavBar
-      <button onClick={todosCtx.toggleAddTodo}>Add new todo</button>
+      <div>
+        <span>LOGO + NAME</span>
+        <button onClick={todosCtx.toggleAddTodo}>ADD NEW TO DO</button>
+      </div>
     </div>
   );
 };

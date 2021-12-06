@@ -1,15 +1,22 @@
 .button {
-    padding: 6px;
-    border-radius: 4px;
-    margin-bottom: 8px;
+    display: block;
+    padding: 4px;
+    border: 1px solid black;
+    margin: 0 auto 8px auto;
     color: white;
     width: 100%;
+    min-width: 100px;
+    outline: none;
+    /* outline necessary - maybe on click */
+    font-size: 12px;
 }
 
 .green {
-    background-color: green;
+    /* background-color: green; */
+    background: rgb(57, 141, 169);
 }
 
 .red {
-    background-color: red;
+    /* background-color: red; */
+    background: rgb(57, 141, 169);
 }

@@ -4,7 +4,7 @@ import classes from './Button.module.css';
 
 const Button: React.FC<{ type: 'button' | 'submit'; clickHandler: (event: any) => void; color: 'green' | 'red' }> =
   (props) => {
-    console.log('BUTTON gets rendered');
+    // console.log('BUTTON gets rendered');
     const cssClasses = `${classes.button} ${props.color === 'green' ? classes.green : classes.red}`
 
     return (

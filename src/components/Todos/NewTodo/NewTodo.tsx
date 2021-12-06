@@ -20,8 +20,7 @@ const NewTodo: React.FC = () => {
       console.log('input is too short');
       return;
     }
-    const newTodo = new Todo(todoInput, 'new');
-    console.log(newTodo);
+    const newTodo = new Todo(todoInput, 'NEW');
     // via ctx newTodo wirklich adden
     todosCtx.addTodo(newTodo);
     // clear form OR better close form, maybe show a green mark for a short time

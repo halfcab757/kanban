@@ -8,7 +8,7 @@ const Layout: React.FC = (props) => {
     <Fragment>
       <Navigation />
       {props.children}
-      <Footer />
+      {/* <Footer /> */}
     </Fragment>
   );
 };

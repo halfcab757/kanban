@@ -1,7 +1,15 @@
 .navigation {
-    background: blue;
-    padding: 18px;
+    /* background: coral; */
+    /* background: #4feec6; */
+    background: #4f78ee;
+}
+
+.navigation > div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 18px;
+    width: 90%;
+    max-width: 975px;
+    margin: 0 auto;
 }

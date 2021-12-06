@@ -1,9 +1,22 @@
 .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     flex-wrap: nowrap;
     width: 95%;
+    max-width: 900px;
     margin: 0 auto;
+    /* font-weight: lighter; */
     /* height: 100%; */
+}
+
+@media (min-width: 500px) {
+    .container {
+        flex-direction: row;
+        /* justify-content: center;
+        flex-wrap: nowrap;
+        width: 95%;
+        margin: 0 auto; */
+        /* height: 100%; */
+    }
 }

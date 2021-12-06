@@ -7,6 +7,7 @@ import Todos from './components/Todos/Todos';
 import { TodosContext } from './store/todos-context';
 
 import NewTodo from './components/Todos/NewTodo/NewTodo';
+import DeleteConfirmation from './components/Todos/DeleteConfirmation/DeleteConfirmation';
 
 const App = () => {
   const todosCtx = useContext(TodosContext);
@@ -15,6 +16,7 @@ const App = () => {
     <div className="App">
       <Layout>
         {todosCtx.addingTodo && <NewTodo />}
+        {todosCtx.deletingTodo && <DeleteConfirmation />}
           <Todos />
       </Layout>
     </div>

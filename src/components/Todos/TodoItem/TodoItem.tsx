@@ -8,6 +8,7 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
   props
 ) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [doneText, setDoneText] = useState('DONE?');  // const [isDeleting, setIsDeleting] = useState(false);
   const todosCtx = useContext(TodosContext);
 
   const toggleEditHandler = () => {
@@ -16,52 +17,76 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
     });
   };
 
+  // const startDeleteHandler = () => {
+  //   setIsDeleting(true);
+  // }
+
+  // const cancelDeleteHandler = () => {
+  //   setIsDeleting(false);
+  // }
+
+  const toggleDoneText = () => {
+    console.log('toggling text');
+    if (doneText === 'DONE?') {
+      setDoneText('DONE!');
+    }
+
+    if (doneText === 'DONE!') {
+      setDoneText('DONE?');
+    }
+  }
+
   let actions = (
     <Fragment>
       <Button type="button" color="green" clickHandler={todosCtx.moveItem.bind(null, props.id)}>
-        Set to progress
+        MOVE TO DOING
       </Button>
+      <Button type="button" color="green" clickHandler={todosCtx.moveItemStraightToDone.bind(null, props.id)}>
+        MOVE TO DONE
+      </Button>
+      {/* <button onMouseOver={toggleDoneText} onMouseLeave={toggleDoneText}>{doneText}</button> */}
       <Button
         type="button"
         color="red"
-        clickHandler={todosCtx.deleteTodo.bind(null, props.id)}
+        // clickHandler={todosCtx.deleteTodo.bind(null, props.id)}
+        clickHandler={todosCtx.startDeleteHandler.bind(null, props.id, props.title)}
       >
-        Delete
+        DELETE TO DO
       </Button>
       <Button type="button" color="red" clickHandler={toggleEditHandler}>
-        Close
+        CANCEL EDITING
       </Button>
     </Fragment>
   );
 
-  if (props.status === 'progress') {
+  if (props.status === 'PROGRESS') {
     actions = (
       <Fragment>
         <Button type="button" color="green" clickHandler={todosCtx.moveItem.bind(null, props.id)}>
-          Set to done
+          DONE?
         </Button>
         <Button
           type="button"
           color="red"
           clickHandler={todosCtx.deleteTodo.bind(null, props.id)}
         >
-          Delete
+          DELETE TO DO
         </Button>
         <Button type="button" color="red" clickHandler={toggleEditHandler}>
-          Close
+          CANCEL EDITING
         </Button>
       </Fragment>
     );
   }
 
-  if (props.status === 'done') {
+  if (props.status === 'DONE') {
     actions = (
       <Fragment>
         <Button type="button" color="green" clickHandler={todosCtx.moveItem.bind(null, props.id)}>
           Move to achievement list
         </Button>
         <Button type="button" color="red" clickHandler={toggleEditHandler}>
-          Close
+          Cancel
         </Button>
       </Fragment>
     );
