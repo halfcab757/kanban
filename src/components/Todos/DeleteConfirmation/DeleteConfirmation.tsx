@@ -19,6 +19,7 @@ const todosCtx = useContext(TodosContext);
           <Button
             type="button"
             color="red"
+            size='regular'
             clickHandler={todosCtx.deleteTodo.bind(null, todosCtx.selectedItem!.id)}
           >
             Yes, let's remove it.
@@ -26,6 +27,7 @@ const todosCtx = useContext(TodosContext);
           <Button
             type="button"
             color="green"
+            size='regular'
             clickHandler={todosCtx.cancelDeleteHandler}
           >
             No, let's keep it.

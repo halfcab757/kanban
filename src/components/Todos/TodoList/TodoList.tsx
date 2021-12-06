@@ -4,6 +4,7 @@ import classes from './TodoList.module.css';
 import Todo from '../../../models/todo';
 
 import TodoItem from '../TodoItem/TodoItem';
+import Button from '../../UI/Button/Button';
 
 const TodoList: React.FC<{ title: string; items: Todo[]; showItems: boolean; onShow: (listTitle: string) => void }> =
   (props) => {
@@ -29,9 +30,7 @@ const TodoList: React.FC<{ title: string; items: Todo[]; showItems: boolean; onS
               ))}
         </ul>
         {endOfList < props.items.length - 1 && (
-          <button type="button" onClick={showMoreItemsHandler}>
-            Show more items
-          </button>
+          <Button type='button' color='green' size='small' clickHandler={showMoreItemsHandler}>Show more edits</Button>
         )}
       </Fragment>
     );

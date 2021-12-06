@@ -6,10 +6,20 @@
 
 .navigation > div {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    align-items: center;
+    /* height: 48px; */
     padding: 18px;
     width: 90%;
     max-width: 975px;
     margin: 0 auto;
+}
+
+@media (min-width: 450px) {
+    .navigation > div {
+        flex-direction: row;
+        justify-content: space-between;
+        /* align-items: center; */
+    }
 }

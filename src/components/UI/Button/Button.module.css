@@ -1,22 +1,40 @@
 .button {
     display: block;
     padding: 4px;
-    border: 1px solid black;
-    margin: 0 auto 8px auto;
+    border: 1px solid rgba(10, 78, 100, 0.8);
+    border-radius: 6px;
+    margin: 8px auto 8px auto;
     color: white;
     width: 100%;
     min-width: 100px;
     outline: none;
     /* outline necessary - maybe on click */
     font-size: 12px;
+    font-weight: lighter;
+}
+
+.button:hover {
+    background: rgba(10, 78, 100, 1);
+    border: 1px solid rgba(10, 78, 100, 1);
+    font-weight: bold;
 }
 
 .green {
     /* background-color: green; */
-    background: rgb(57, 141, 169);
+    /* background: rgb(57, 141, 169); */
+    background:rgba(10, 78, 100, 0.8);
 }
 
 .red {
     /* background-color: red; */
-    background: rgb(57, 141, 169);
+    background:rgba(10, 78, 100, 0.8);
+}
+
+.large {
+    padding: 12px;
+    font-size: 14px;
+}
+
+.small {
+    width: 80%;
 }

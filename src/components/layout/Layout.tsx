@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 
 import Navigation from './Navigation/Navigation';
-import Footer from './Footer/Footer';
+// import Footer from './Footer/Footer';
 
 const Layout: React.FC = (props) => {
   return (

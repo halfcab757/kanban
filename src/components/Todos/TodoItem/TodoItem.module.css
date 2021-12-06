@@ -1,12 +1,19 @@
 .item {
     padding: 6px;
     margin-bottom: 6px;
-    border: 1px solid grey;
+    border: 1px solid transparent;
+    border-radius: 12px;
     /* background: coral; */
     /* background: rgb(79, 199, 238); */
     background: #4feec6;
     /* background: #4f78ee; */
     text-align: center;
+}
+
+.item:hover {
+    background: #4feec6;
+    /* border: 2px solid #4f78ee; */
+    border: 1px solid rgba(10, 78, 100, 0.8);
 }
 
 .item h3 {
