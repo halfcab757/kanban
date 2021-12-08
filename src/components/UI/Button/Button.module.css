@@ -4,8 +4,8 @@
     border: 1px solid rgba(10, 78, 100, 0.8);
     border-radius: 6px;
     margin: 8px auto 8px auto;
-    color: white;
-    width: 100%;
+    color: black;
+    width: 70%;
     min-width: 100px;
     outline: none;
     /* outline necessary - maybe on click */
@@ -14,27 +14,44 @@
 }
 
 .button:hover {
-    background: rgba(10, 78, 100, 1);
+    /* background: rgba(10, 78, 100, 1); */
+    background: #4f78ee;
+    color: white;
     border: 1px solid rgba(10, 78, 100, 1);
-    font-weight: bold;
+    cursor: pointer;
+    /* font-weight: bold; */
 }
 
 .green {
     /* background-color: green; */
     /* background: rgb(57, 141, 169); */
-    background:rgba(10, 78, 100, 0.8);
+    /* background:rgba(10, 78, 100, 0.8); */
+    /* background: #ee4f77; */
+    /* background: #c64fee; */
+    /* background: #eec64f; */
+    background: #4fc7ee;
+    /* background: #c64fee; */
 }
 
 .red {
     /* background-color: red; */
-    background:rgba(10, 78, 100, 0.8);
+    /* background:rgba(10, 78, 100, 0.8); */
+    background: #4fc7ee;
 }
 
 .large {
     padding: 12px;
     font-size: 14px;
+    width: 75%;
+}
+
+.large:hover {
+    /* border: 1px solid white; */
+    background: #f7f9fe;
+    color: black;
+    font-weight: bold;
 }
 
 .small {
-    width: 80%;
+    width: 60%;
 }

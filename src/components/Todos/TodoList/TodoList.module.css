@@ -1,11 +1,22 @@
 .todolist {
     width: 90%;
-    background: lightyellow;
-    /* border: 1px solid g; */
+    background: #f7f9fe;
+    /* background: #c4d4f7; */
+    /* background: #eceaf6; */
+    /* background: #f4f6ea; */
+    border: 1px solid transparent;
+    border-radius: 12px;
     /* height: 70vh; */
     min-height: 10vh;
     margin: 16px;
     padding: 6px;
+}
+
+.todolist:hover {
+    /* background: #e8eefc; */
+    background: #f0f4fd;
+    box-shadow: 0px 20px 25px -5px rgba(50, 50, 93, 0.25), 0px 15px 15px -8px rgba(0, 0, 0, 0.3);
+    /* border: 1px solid #c4cde1; */
 }
 
 .todolist h2 {

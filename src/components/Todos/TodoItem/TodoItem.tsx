@@ -2,6 +2,7 @@ import { Fragment, useState, useContext } from 'react';
 
 import classes from './TodoItem.module.css';
 import Button from '../../UI/Button/Button';
+import CloseButton from '../../UI/CloseButton/CloseButton';
 import { TodosContext } from '../../../store/todos-context';
 
 const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
@@ -54,9 +55,10 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
       >
         DELETE TO DO
       </Button>
-      <Button type="button" color="red" size='regular' clickHandler={toggleEditHandler}>
+      {/* <Button type="button" color="red" size='regular' clickHandler={toggleEditHandler}>
         CANCEL EDITING
-      </Button>
+      </Button> */}
+      <CloseButton clickHandler={toggleEditHandler}/>
     </Fragment>
   );
 
@@ -74,9 +76,9 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
         >
           DELETE TO DO
         </Button>
-        <Button type="button" color="red" size='regular' clickHandler={toggleEditHandler}>
+        {/* <Button type="button" color="red" size='regular' clickHandler={toggleEditHandler}>
           CANCEL EDITING
-        </Button>
+        </Button> */}
       </Fragment>
     );
   }
@@ -100,9 +102,9 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
         <h3>{props.title}</h3>
         {!isEditing && (
           <Button
-            type="button"
-            color="green"
-            size='regular'
+            type='button'
+            color='green'
+            size='small'
             clickHandler={toggleEditHandler}
           >Edit</Button>
         )}
