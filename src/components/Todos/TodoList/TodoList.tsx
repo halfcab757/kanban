@@ -8,10 +8,15 @@ import Button from '../../UI/Button/Button';
 
 const TodoList: React.FC<{ title: string; items: Todo[]; showItems: boolean; onShow: (listTitle: string) => void }> =
   (props) => {
+    console.log('re-rendering list');
     const [endOfList, setEndOfList] = useState(3);
 
     const showMoreItemsHandler = () => {
       setEndOfList((prevEnd) => prevEnd + 3);
+    };
+
+    const showLessItemsHandler = () => {
+      setEndOfList(3);
     };
 
     let itemsList = (
@@ -29,8 +34,11 @@ const TodoList: React.FC<{ title: string; items: Todo[]; showItems: boolean; onS
                 />
               ))}
         </ul>
-        {endOfList < props.items.length - 1 && (
-          <Button type='button' color='green' size='small' clickHandler={showMoreItemsHandler}>Show more edits</Button>
+        {endOfList < props.items.length && (
+          <Button type='button' color='green' size='small' clickHandler={showMoreItemsHandler}>Show more todos</Button>
+        )}
+        {endOfList > 3 && (
+          <Button type='button' color='green' size='small' clickHandler={showLessItemsHandler}>Show less todos</Button>
         )}
       </Fragment>
     );

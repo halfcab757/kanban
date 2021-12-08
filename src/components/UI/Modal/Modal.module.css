@@ -8,4 +8,5 @@
     top: 20px;
     left: calc(50% - 256px);
     padding: 16px;
+    z-index: 2;
 }

@@ -12,9 +12,9 @@ const DUMMY_TODOS = [
   new Todo('Go to the supermarket', Status.NEW),
   new Todo('Buy chrismas presents', Status.NEW),
   new Todo('Finish react course', Status.NEW),
-  new Todo('Call Mom', Status.NEW),
-  new Todo('Get cash', Status.NEW),
-  new Todo('Grocery shopping', Status.NEW),
+  // new Todo('Call Mom', Status.NEW),
+  // new Todo('Get cash', Status.NEW),
+  // new Todo('Grocery shopping', Status.NEW),
 ];
 
 export const TodosContext = React.createContext<{

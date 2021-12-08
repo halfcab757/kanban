@@ -10,6 +10,9 @@
     min-height: 10vh;
     margin: 16px;
     padding: 6px;
+
+        /* animate vergrößern/ verkleinern von list */
+    /* transition: all 1s ease-out; */
 }
 
 .todolist:hover {
