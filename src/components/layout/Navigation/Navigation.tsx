@@ -14,6 +14,7 @@ const Navigation: React.FC = () => {
       <div>
         <span>GET THINGS DONE</span>
         {/* <button onClick={todosCtx.toggleAddTodo}>ADD NEW TO DO</button> */}
+        {/* no clean code with the inline style in the next div */}
         <div style={{ width: '200px' }}>
           <Button
             type="button"

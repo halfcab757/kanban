@@ -1,0 +1,23 @@
+.button {
+    /* width: 40px; */
+    /* width: 100px;
+    height: 100px;
+    border-radius: 50%; */
+    /* font-size: 50px; */
+    border: none;
+    outline: none;
+    display: block;
+    /* do i need to set outline? */
+    background: transparent;
+    margin: 0 auto;
+}
+
+.button i {
+    font-size: 45px;
+    /* border-radius: 50%; */
+}
+
+.button i:hover {
+    cursor: pointer;
+    /* box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6); */
+}

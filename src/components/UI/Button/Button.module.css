@@ -9,7 +9,7 @@
     min-width: 100px;
     outline: none;
     /* outline necessary - maybe on click */
-    font-size: 12px;
+    font-size: 14px;
     font-weight: lighter;
 }
 
@@ -49,9 +49,14 @@
     /* border: 1px solid white; */
     background: #f7f9fe;
     color: black;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .small {
     width: 60%;
+}
+
+.icon {
+    margin: 0 12px;
+    font-size: 28px;
 }
