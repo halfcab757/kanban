@@ -6,28 +6,35 @@ import Modal from '../../UI/Modal/Modal';
 import { TodosContext } from '../../../store/todos-context';
 
 const DeleteConfirmation: React.FC = () => {
-const todosCtx = useContext(TodosContext);
+  const todosCtx = useContext(TodosContext);
 
   return (
     <Modal onClose={todosCtx.cancelDeleteHandler}>
       <div>
-        <div>
-            {todosCtx.selectedItem?.text}
-        </div>
+        <div>{todosCtx.selectedItem?.text}</div>
         Are you sure?
         <div>
           <Button
+            tipText=""
+            onEnter={() => {}}
+            onLeave={() => {}}
             type="button"
             color="red"
-            size='regular'
-            clickHandler={todosCtx.deleteTodo.bind(null, todosCtx.selectedItem!.id)}
+            size="regular"
+            clickHandler={todosCtx.deleteTodo.bind(
+              null,
+              todosCtx.selectedItem!.id
+            )}
           >
             Yes, let's remove it.
           </Button>
           <Button
+            tipText=""
+            onEnter={() => {}}
+            onLeave={() => {}}
             type="button"
             color="green"
-            size='regular'
+            size="regular"
             clickHandler={todosCtx.cancelDeleteHandler}
           >
             No, let's keep it.

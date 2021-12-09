@@ -10,8 +10,8 @@ enum Status {
 
 const DUMMY_TODOS = [
   new Todo('Go to the supermarket', Status.NEW),
-  new Todo('Buy chrismas presents', Status.NEW),
-  new Todo('Finish react course', Status.NEW),
+  // new Todo('Buy chrismas presents', Status.NEW),
+  // new Todo('Finish react course', Status.NEW),
   // new Todo('Call Mom', Status.NEW),
   // new Todo('Get cash', Status.NEW),
   // new Todo('Grocery shopping', Status.NEW),
@@ -22,7 +22,7 @@ export const TodosContext = React.createContext<{
   freshTodos: Todo[];
   progressedTodos: Todo[];
   finishedTodos: Todo[];
-  moveItem: (itemId: string) => void;
+  moveItem: (itemId: string, targetList: string) => void;
   moveItemStraightToDone: (itemId: string) => void;
   addingTodo: boolean;
   deletingTodo: boolean;
@@ -31,13 +31,14 @@ export const TodosContext = React.createContext<{
   deleteTodo: (id: string) => void;
   startDeleteHandler: (itemId: string, itemTitle: string) => void;
   cancelDeleteHandler: () => void;
-  selectedItem: Todo | null
+  selectedItem: Todo | null;
+  deleteDoneTodos: () => void;
 }>({
   items: [],
   freshTodos: [],
   progressedTodos: [],
   finishedTodos: [],
-  moveItem: (itemId: string) => {},
+  moveItem: (itemId: string, targetList: string) => {},
   moveItemStraightToDone: (itemId: string) => {},
   addingTodo: false,
   deletingTodo: false,
@@ -46,7 +47,8 @@ export const TodosContext = React.createContext<{
   deleteTodo: (itemId: string) => {},
   startDeleteHandler: (itemId: string, itemTitle: string) => {},
   cancelDeleteHandler: () => {},
-  selectedItem: null
+  selectedItem: null,
+  deleteDoneTodos: () => {}
 });
 
 // Wo setze ich den eventlistenser? besser für performance wäre die Liste oder gar der container
@@ -59,6 +61,10 @@ const TodosContextProvider: React.FC = (props) => {
   const [progressedTodos, setProgressedTodos] = useState<Todo[]>([]);
   const [finishedTodos, setFinishedTodos] = useState<Todo[]>([]);
   const [selectedItem, setSelectedItem] = useState<Todo | null>(null);
+
+  console.log(finishedTodos);
+  console.log(progressedTodos);
+  console.log(freshTodos);
 
   useEffect(() => {
     console.log('useEffect in context');
@@ -83,6 +89,12 @@ const TodosContextProvider: React.FC = (props) => {
     setAddingTodo((prevState) => !prevState);
   };
 
+  const deleteDoneTodos = () => {
+    // confirmation with modal?
+    const updatedItems = items.filter(item => item.status !== 'DONE');
+    setItems(updatedItems);
+  }
+
   const startDeleteHandler = (itemId: string) => {
     console.log('starting to delete');
     const selectedItem = items.find(item => item.id === itemId)!;
@@ -98,20 +110,60 @@ const TodosContextProvider: React.FC = (props) => {
   }
 
   const updateTodoLists = (itemList: string, item: Todo) => {
-      console.log('updating todo lists');
+      console.log('updating todo lists in context');
+      console.log(itemList);
+
+
+    // Achtung: Ich muss das item auch bei allen items updaten, sonst funktioniert das cleanup bei done nicht
+
     //   let list: Todo[];
-      if (itemList === Status.NEW) {
+      if (itemList === 'NEW' && item.status === 'DOING' ) {
           const updatedFreshItems = freshTodos.filter(todo => todo.id !== item.id);
           const updatedProgressedItems = [item, ...progressedTodos];
           setFreshTodos(updatedFreshItems);
           setProgressedTodos(updatedProgressedItems);
       }
 
-      if (itemList === Status.PROGRESS) {
+      if (itemList === 'NEW' && item.status === 'DONE' ) {
+        const updatedFreshItems = freshTodos.filter(todo => todo.id !== item.id);
+        const updatedFinishedItems = [item, ...progressedTodos];
+        setFreshTodos(updatedFreshItems);
+        setFinishedTodos(updatedFinishedItems);
+    }
+
+      if (itemList === 'DOING' && item.status === 'DONE') {
+        console.log('moving from doing to done');
         const updatedProgressedItems = progressedTodos.filter(todo => todo.id !== item.id);
         const updatedFinishedItems = [item, ...finishedTodos];
         setProgressedTodos(updatedProgressedItems);
         setFinishedTodos(updatedFinishedItems);
+      }
+
+      if (itemList === 'DOING' && item.status === 'NEW') {
+        const updatedProgressedItems = progressedTodos.filter(todo => todo.id !== item.id);
+        const updatedFreshItems = [item, ...freshTodos];
+        setProgressedTodos(updatedProgressedItems);
+        setFreshTodos(updatedFreshItems);
+      }
+
+      if (itemList === 'DONE' && item.status === 'NEW') {
+        const updatedFinishedTodos = finishedTodos.filter(todo => todo.id !== item.id);
+        const updatedFreshTodos = [item, ...freshTodos];
+        setFinishedTodos(updatedFinishedTodos);
+        setFreshTodos(updatedFreshTodos);
+      }
+
+      if (itemList === 'DONE' && item.status === 'DOING') {
+        console.log('from done to doing');
+        console.log(item.id);
+        const updatedFinishedTodos = finishedTodos.filter(todo => todo.id !== item.id);
+        const updatedProgressedTodos = [item, ...progressedTodos];
+        console.log(progressedTodos);
+        console.log(updatedFinishedTodos);
+        console.log(updatedProgressedTodos);
+        console.log(updatedFinishedTodos);
+        setFinishedTodos(updatedFinishedTodos);
+        setProgressedTodos(updatedProgressedTodos);
       }
 
     //   also for done to achieved
@@ -133,35 +185,36 @@ const TodosContextProvider: React.FC = (props) => {
     setFinishedTodos(updatedFinishedTodos);
   }
 
-  const moveItem = (itemId: string) => {
+  const moveItem = (itemId: string, targetList: string) => {
     // status updaten und zwei item-listen updaten
     console.log('moving item');
-    console.log(itemId);
     const updatedItem = items.find((item) => item.id === itemId);
-    console.log(updatedItem);
     if (!updatedItem) {
       // throw an error?
       return;
     }
 
     const oldStatus = updatedItem.status;
+    updatedItem.status = targetList;
 
-    switch (updatedItem.status) {
-      case Status.NEW:
-        updatedItem.status = Status.PROGRESS;
-        break;
-      case Status.PROGRESS:
-        updatedItem.status = Status.DONE;
-        console.log(updatedItem);
-        break;
-      case Status.DONE:
-        updatedItem.status = Status.ACHIEVED;
-        break;
-      default:
-        return;
-    }
+    // switch (updatedItem.status) {
+    //   case Status.NEW:
+    //     updatedItem.status = Status.PROGRESS;
+    //     break;
+    //   case Status.PROGRESS:
+    //     updatedItem.status = Status.DONE;
+    //     console.log(updatedItem);
+    //     break;
+    //   case Status.DONE:
+    //     updatedItem.status = Status.ACHIEVED;
+    //     break;
+    //   default:
+    //     return;
+    // }
 
     // anpassen für von new zu done in einem Schritt
+    console.log('ready to update todo lists');
+    console.log(updatedItem);
     updateTodoLists(oldStatus, updatedItem);
 
   };
@@ -195,7 +248,8 @@ const TodosContextProvider: React.FC = (props) => {
     finishedTodos,
     startDeleteHandler: startDeleteHandler,
     cancelDeleteHandler: cancelDeleteHandler,
-    selectedItem: selectedItem
+    selectedItem: selectedItem,
+    deleteDoneTodos: deleteDoneTodos
   };
 
   return (

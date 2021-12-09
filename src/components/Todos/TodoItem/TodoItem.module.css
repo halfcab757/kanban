@@ -5,12 +5,12 @@
     margin-bottom: 6px;
     border: 1px solid transparent;
     border-radius: 12px;
+    /* min-width: 200px; */
     /* background: coral; */
     /* background: rgb(79, 199, 238); */
     background: #4feec6;
     /* background: #4f78ee; */
     text-align: center;
-
     /* trying to animate the item when editing starts */
     /* height: auto;
     transition: all 1s ease-out; */
@@ -30,10 +30,54 @@
     font-size: 16px;
 }
 
-/* .actions {
+.actions {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    /* width: 200px; */
+    margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+    .actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .actions button {
+        width: 50%;
+        min-width: 85px;
+    }
+}
+
+/* I will try achieve my idea with onMouseEnter and useState in Button */
+/* I wanna keep the opacity animation */
+
+.tip {
+    font-size: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+/* .actions button:hover + .tip {
+    opacity: 1;
 } */
+
+@media (max-width: 500px) {
+    .tip {
+        display: none;
+    }
+}
+
+.tip:hover {
+    opacity: 1;
+}
+
+.actions button:hover + .tip {
+    opacity: 1;
+}
 
 /* .actions button {
     display: block;

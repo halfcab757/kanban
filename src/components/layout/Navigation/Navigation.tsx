@@ -17,9 +17,12 @@ const Navigation: React.FC = () => {
         {/* no clean code with the inline style in the next div */}
         <div style={{ width: '200px' }}>
           <Button
+            tipText=""
+            onEnter={() => {}}
+            onLeave={() => {}}
             type="button"
             color="green"
-            size='large'
+            size="large"
             clickHandler={todosCtx.toggleAddTodo}
           >
             Add new To Do
