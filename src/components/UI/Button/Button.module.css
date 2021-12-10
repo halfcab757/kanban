@@ -26,21 +26,8 @@
     /* font-weight: bold; */
 }
 
-.green {
-    /* background-color: green; */
-    /* background: rgb(57, 141, 169); */
-    /* background:rgba(10, 78, 100, 0.8); */
-    /* background: #ee4f77; */
-    /* background: #c64fee; */
-    /* background: #eec64f; */
-    background: #4fc7ee;
-    /* background: #c64fee; */
-}
-
-.red {
-    /* background-color: red; */
-    /* background:rgba(10, 78, 100, 0.8); */
-    background: #4fc7ee;
+.container {
+    position: relative;
 }
 
 .large {
@@ -63,4 +50,25 @@
 .icon {
     /* margin: 0 12px; */
     font-size: 20px;
+}
+
+.tip {
+    background: #f7f9fe;
+    position: absolute;
+    top: 60px;
+    left: -59px;
+    width: 160px;
+    padding: 6px;
+    z-index: 10;
+    margin: 0px 4px;
+    border: 1px solid white;
+    border-radius: 8px;
+    box-shadow: 0px 10px 20px -5px rgba(50, 50, 93, 0.25), 0px 6px 14px -8px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 500px) {
+    .tip {
+        left: -46px;
+        /* is not exactly in the middle */
+    }
 }

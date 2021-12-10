@@ -25,24 +25,34 @@ const Button: React.FC<{
 
   const [showTip, setShowTip] = useState(false);
 
-  const toggleShowTip = (event: any) => {
+  // use useEffect to show cancel button right from the start - mouse will be over it at start
+
+  const displayTip = (event: any) => {
     console.log('mouse enters');
-    console.log(event);
-    setShowTip((prevState) => !prevState);
+    if(!showTip) {
+      setShowTip(prevState => true);
+    }
+    // setShowTip((prevState) => !prevState);
   };
 
+  const hideTip = (event: any) => {
+    console.log('mouse leaves');
+    if(showTip) {
+      setShowTip(prevState => false);
+    }
+  }
+
   return (
-    <Fragment>
+    <div className={classes.container}>
       <button
-        onMouseEnter={props.onEnter}
-        onMouseLeave={props.onLeave}
+        // onMouseEnter={props.onEnter}
+        onMouseEnter={displayTip}
+        onMouseLeave={hideTip}
         onClick={props.clickHandler}
         type={props.type}
         className={cssClasses}
       >
-        {/* {props.children.toUpperCase()} */}
-        {/* {props.children.toUpperCase() === 'EDIT' || props.children.toUpperCase() === 'DELETE TO DO' ? null : props.children.toUpperCase()}  */}
-        {/* {props.children.toUpperCase() === 'DELETE TO DO' ? null : props.children.toUpperCase()}  */}
+     
         {props.children.toUpperCase() === 'EDIT' && (
           <span className={classes.icon}>
             <i className="fas fa-edit"></i>
@@ -81,7 +91,8 @@ const Button: React.FC<{
         {/* {props.children.toUpperCase() === 'SHOW MORE TODOS' && <span className={classes.icon}><i className='fas fa-arrow-circle-down'></i></span>} */}
       </button>
       {/* {showTip && <Tip text='EDIT THIS ITEM'/>} */}
-    </Fragment>
+      {showTip && <div className={classes.tip}>{props.children}</div>}
+    </div>
   );
 };
 

@@ -1,26 +1,17 @@
 .item {
     position: relative;
-    z-index: 0;
+    /* z-index: 0; */
     padding: 6px;
     margin-bottom: 6px;
     border: 1px solid transparent;
     border-radius: 12px;
-    /* min-width: 200px; */
-    /* background: coral; */
-    /* background: rgb(79, 199, 238); */
     background: #4feec6;
-    /* background: #4f78ee; */
     text-align: center;
     /* trying to animate the item when editing starts */
-    /* height: auto;
-    transition: all 1s ease-out; */
 }
 
 .item:hover {
     background: #4feec6;
-    /* border: 2px solid #4f78ee; */
-    /* border: 1px solid rgba(10, 78, 100, 0.8); */
-    /* box-shadow: 0px 6px 8px rgb(0, 0, 0, 0.4); */
     box-shadow: 0px 10px 20px -5px rgba(50, 50, 93, 0.25), 0px 6px 14px -8px rgba(0, 0, 0, 0.3);
 }
 
