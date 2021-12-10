@@ -18,30 +18,20 @@ const DeleteConfirmation: React.FC = () => {
         
         <div className={classes.actions}>
           <Button
-            tipText=""
-            onEnter={() => {}}
-            onLeave={() => {}}
-            type="button"
-            color="red"
-            size="regular"
+            tipText='DELETE TO DO'
+            type='button'
+            action='DELETE'
             clickHandler={todosCtx.deleteTodo.bind(
               null,
               todosCtx.selectedItem!.id
             )}
-          >
-            Yes, let's remove it.
-          </Button>
+          />
           <Button
-            tipText=""
-            onEnter={() => {}}
-            onLeave={() => {}}
+            tipText='CANCEL AND KEEP TO DO'
+            action='CANCEL'
             type="button"
-            color="green"
-            size="regular"
             clickHandler={todosCtx.cancelDeleteHandler}
-          >
-            No, let's keep it.
-          </Button>
+          />
         </div>
       </div>
     </Modal>

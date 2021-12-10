@@ -2,57 +2,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding: 4px; */
     border: 1px solid rgba(10, 78, 100, 0.8);
     border-radius: 6px;
     margin: 8px auto 8px auto;
     color: black;
     width: 44px;
     height: 44px;
-    /* min-width: 100px; */
-    outline: none;
     margin: 4px;
-    /* margin: 6px auto; */
-    /* outline necessary - maybe on click */
-    /* font-size: 18px; */
+    background: #4f78ee;
 }
 
 .button:hover {
-    /* background: rgba(10, 78, 100, 1); */
-    background: #4f78ee;
+    /* background: #4f78ee; */
     color: white;
     border: 1px solid rgba(10, 78, 100, 1);
     cursor: pointer;
-    /* font-weight: bold; */
 }
 
 .container {
+    /* Wofür ist das nochmal wichtig? Fr den Tip Text? */
     position: relative;
 }
 
-.large {
-    padding: 12px;
-    font-size: 14px;
-    width: 75%;
-}
-
-.large:hover {
-    /* border: 1px solid white; */
-    background: #f7f9fe;
-    color: black;
-    /* font-weight: bold; */
-}
-
-.small {
-    /* width: 60%; */
-}
-
 .icon {
-    /* margin: 0 12px; */
     font-size: 20px;
 }
 
 .tip {
+    color: black;
     background: #f7f9fe;
     position: absolute;
     top: 60px;
@@ -71,4 +48,10 @@
         left: -46px;
         /* is not exactly in the middle */
     }
+}
+
+.addBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
 }

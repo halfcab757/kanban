@@ -28,15 +28,15 @@ const TodoList: React.FC<{
   let items: Todo[] = [];
 
   if (props.title === 'TO DO') {
-    items = props.items.filter(item => item.status === 'NEW');
+    items = props.items.filter((item) => item.status === 'NEW');
   }
 
   if (props.title === 'DOING') {
-    items = props.items.filter(item => item.status === 'DOING');
+    items = props.items.filter((item) => item.status === 'DOING');
   }
 
   if (props.title === 'DONE') {
-    items = props.items.filter(item => item.status === 'DONE');
+    items = props.items.filter((item) => item.status === 'DONE');
   }
 
   let itemsList = (
@@ -56,14 +56,38 @@ const TodoList: React.FC<{
       </ul>
       {endOfList < items.length && (
         // <Button type='button' color='green' size='small' clickHandler={showMoreItemsHandler}>Show more todos</Button>
-        <ShowButton type="down" clickHandler={showMoreItemsHandler} />
+        // <ShowButton type="down" clickHandler={showMoreItemsHandler} />
+        <div className={classes.actions}>
+          <Button
+            type="button"
+            action="MORE"
+            tipText="SHOW MORE TO DOS"
+            clickHandler={showMoreItemsHandler}
+          />
+        </div>
       )}
       {endOfList > 3 && (
         // <Button type='button' color='green' size='small' clickHandler={showLessItemsHandler}>Show less todos</Button>
-        <ShowButton type="up" clickHandler={showLessItemsHandler} />
+        // <ShowButton type="up" clickHandler={showLessItemsHandler} />
+        <div className={classes.actions}>
+          <Button
+            type="button"
+            action="LESS"
+            tipText="SHOW FEWER TO DOS"
+            clickHandler={showLessItemsHandler}
+          />
+        </div>
       )}
       {props.title === 'DONE' && items.length > 0 && (
-        <ShowButton type="clean" clickHandler={todosCtx.deleteDoneTodos} />
+        <div className={classes.actions}>
+        <Button
+          type="button"
+          action="DELETE"
+          tipText="DELETE ALL DONE TO DOS"
+          clickHandler={todosCtx.deleteDoneTodos}
+        />
+        </div>
+        // <ShowButton type="clean" clickHandler={todosCtx.deleteDoneTodos} />
       )}
     </Fragment>
   );
@@ -71,9 +95,12 @@ const TodoList: React.FC<{
   let title = <h2>{props.title}</h2>;
 
   const addButton = (
-    <span className={classes.icon} onClick={todosCtx.toggleAddTodo}>
-      <i className="fas fa-plus-circle"></i>
-    </span>
+    <Button
+      type="button"
+      tipText="ADD A NEW TO DO"
+      action="START-TO-ADD"
+      clickHandler={todosCtx.toggleAddTodo}
+    />
   );
 
   return (

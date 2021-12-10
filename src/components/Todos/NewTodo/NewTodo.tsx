@@ -7,6 +7,8 @@ import Modal from '../../UI/Modal/Modal';
 import { TodosContext } from '../../../store/todos-context';
 import Todo from '../../../models/todo';
 
+import Button from '../../UI/Button/Button';
+
 const NewTodo: React.FC = () => {
   const todosCtx = useContext(TodosContext);
   const todoInputRef = useRef<HTMLInputElement>(null);
@@ -18,7 +20,7 @@ const NewTodo: React.FC = () => {
   const submitHandler = (event: any) => {
     event.preventDefault();
     const todoInput = todoInputRef.current!.value.trim();
-    console.log(todoInput);
+    console.log('submit handler fires');
     if (todoInput.length < 3) {
       // throw error;
       console.log('input is too short');
@@ -47,12 +49,22 @@ const NewTodo: React.FC = () => {
           />
         </div>
         <div className={classes.actions}>
-          <button>
-            <i className="fas fa-plus-circle"></i>
-          </button>
-          <button type="button" onClick={todosCtx.toggleAddTodo}>
-            <i className="far fa-times-circle"></i>
-          </button>
+          <Button
+            type='submit'
+            action='ADD'
+            tipText='ADD TODO'
+            clickHandler={() => {}}  
+          >
+            ADD
+          </Button>
+          <Button
+            type='button'
+            action='CANCEL'
+            tipText='CANCEL ADDING'
+            clickHandler={todosCtx.toggleAddTodo}  
+          >
+            Cancel
+          </Button>
         </div>
       </form>
     </Modal>

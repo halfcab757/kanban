@@ -45,47 +45,29 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
   let editActions = (
     <div className={classes.actions}>
       <Button
-        tipText=""
-        onEnter={changeTipText.bind(null, 'MOVE TO DOING')}
-        onLeave={resetTipText}
+        tipText="MOVE TO DOING"
         type="button"
-        color="green"
-        size="regular"
+        action="FORWARDS-TO-DOING"
         clickHandler={todosCtx.moveItem.bind(null, props.id, 'DOING')}
-      >
-        MOVE TO DOING
-      </Button>
+      />
       <Button
-        tipText=""
-        onEnter={changeTipText.bind(null, 'MOVE TO DONE')}
-        onLeave={resetTipText}
+        tipText="MOVE TO DONE"
+        action="FORWARDS-TO-DONE"
         type="button"
-        color="green"
-        size="regular"
         clickHandler={todosCtx.moveItem.bind(null, props.id, 'DONE')}
-      >
-        MOVE TO DONE
-      </Button>
+      />
       {/* <button onMouseOver={toggleDoneText} onMouseLeave={toggleDoneText}>{doneText}</button> */}
       <Button
-        tipText=""
-        onEnter={changeTipText.bind(null, 'DELETE')}
-        onLeave={resetTipText}
+        tipText="DELETE THIS TO DO"
         type="button"
-        color="red"
-        size="regular"
+        action="DELETE"
         // clickHandler={todosCtx.deleteTodo.bind(null, props.id)}
         clickHandler={todosCtx.startDeleteHandler.bind(
           null,
           props.id,
           props.title
         )}
-      >
-        DELETE TO DO
-      </Button>
-      {/* <Button type="button" color="red" size='regular' clickHandler={toggleEditHandler}>
-        CANCEL EDITING
-      </Button> */}
+      />
     </div>
   );
 
@@ -93,45 +75,27 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
     editActions = (
       <div className={classes.actions}>
         <Button
-          tipText=""
-          onEnter={() => {}}
-          onLeave={() => {}}
+          tipText="MOVE BACK TO TO DO"
           type="button"
-          color="red"
-          size="regular"
+          action="BACKWARDS-TO-NEW"
           clickHandler={todosCtx.moveItem.bind(null, props.id, 'NEW')}
-        >
-          ONE BACK
-        </Button>
+        />
         <Button
-          tipText="MOVE TO DOING"
-          onEnter={() => {}}
-          onLeave={() => {}}
+          tipText="MOVE TO DONE"
           type="button"
-          color="green"
-          size="regular"
+          action="FORWARDS-TO-DONE"
           clickHandler={todosCtx.moveItem.bind(null, props.id, 'DONE')}
-        >
-          MOVE TO DONE
-        </Button>
+        />
         <Button
-          tipText=""
-          onEnter={() => {}}
-          onLeave={() => {}}
+          tipText="DELETE TO DO"
           type="button"
-          color="red"
-          size="regular"
+          action="DELETE"
           clickHandler={todosCtx.startDeleteHandler.bind(
             null,
             props.id,
             props.title
           )}
-        >
-          DELETE TO DO
-        </Button>
-        {/* <Button type="button" color="red" size='regular' clickHandler={toggleEditHandler}>
-          CANCEL EDITING
-        </Button> */}
+        />
       </div>
     );
   }
@@ -140,43 +104,28 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
     editActions = (
       <div className={classes.actions}>
         <Button
-          tipText=""
-          onEnter={() => {}}
-          onLeave={() => {}}
+          tipText="MOVE BACK TO DOING"
           type="button"
-          color="green"
-          size="regular"
+          action="BACKWARDS-TO-DOING"
           clickHandler={todosCtx.moveItem.bind(null, props.id, 'DOING')}
-        >
-          ONE BACK
-        </Button>
+        />
         <Button
-          tipText=""
-          onEnter={() => {}}
-          onLeave={() => {}}
+          tipText="MOVE BACK TO TO DO"
+          action="BACKWARDS-TO-NEW"
           type="button"
-          color="red"
-          size="regular"
           clickHandler={todosCtx.moveItem.bind(null, props.id, 'NEW')}
-        >
-          TWO BACK
-        </Button>
+        />
         <Button
-          tipText=""
-          onEnter={changeTipText.bind(null, 'DELETE')}
-          onLeave={resetTipText}
+          tipText="DELETE TO DO"
+          action="DELETE"
           type="button"
-          color="red"
-          size="regular"
           // clickHandler={todosCtx.deleteTodo.bind(null, props.id)}
           clickHandler={todosCtx.startDeleteHandler.bind(
             null,
             props.id,
             props.title
           )}
-        >
-          DELETE TO DO
-        </Button>
+        />
       </div>
     );
   }
@@ -188,28 +137,24 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
         {!isEditing && (
           <div className={classes.actions}>
             <Button
-              tipText=""
-              onEnter={changeTipText.bind(null, 'EDIT THIS ITEM')}
-              onLeave={resetTipText}
+              tipText="EDIT THIS TO DO"
               type="button"
-              color="green"
-              size="small"
+              action="EDIT"
               clickHandler={toggleEditHandler}
-            >
-              Edit
-            </Button>
-            {/* <Tip text={tipText} /> */}
+            />
           </div>
         )}
-        
-        {/* {isEditing && <Tip text={tipText} />} */}
+
         {/* show tip like on asana */}
         {isEditing && (
-          <CloseButton
-            clickHandler={toggleEditHandler}
-            onEnter={changeTipText.bind(null, 'CANCEL EDITING')}
-            onLeave={resetTipText}
-          />
+          <div className={classes.actions}>
+            <Button
+              type="button"
+              tipText="CANCEL EDITING"
+              action="CANCEL"
+              clickHandler={toggleEditHandler}
+            />
+          </div>
         )}
         {isEditing && editActions}
       </div>
