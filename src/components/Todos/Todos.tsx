@@ -35,7 +35,7 @@ const Todos: React.FC = () => {
   }
 
   useEffect(() => {
-    console.log('useeffect in todos');
+    // console.log('useeffect in todos');
     let timer: any;
     const handleResize = () => {
         clearTimeout(timer);
@@ -71,23 +71,26 @@ const Todos: React.FC = () => {
   //     return clearTimeout(timer);
   // }, [window.innerWidth]);
 
+  // const freshTodos = todosCtx.items.filter(item => item.status === 'NEW');
+
   return (
     <TodosContainer>
       <TodoList
         title="TO DO"
-        items={todosCtx.freshTodos}
+        // items={todosCtx.freshTodos}
+        items={todosCtx.items}
         showItems={showFreshTodos}
         onShow={changeShownList}
       />
       <TodoList
         title="DOING"
-        items={todosCtx.progressedTodos}
+        items={todosCtx.items}
         showItems={showProgressedTodos}
         onShow={changeShownList}
       />
       <TodoList
         title="DONE"
-        items={todosCtx.finishedTodos}
+        items={todosCtx.items}
         showItems={showFinishedTodos}
         onShow={changeShownList}
       />

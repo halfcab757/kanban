@@ -1,3 +1,8 @@
+.title {
+    text-align: center;
+    margin: 12px 0;
+}
+
 .form {
     width: 90%;
     max-width: 330px;
@@ -7,6 +12,27 @@
 .controls {
     display: flex;
     flex-direction: column;
+}
+
+.controls label {
+    font-size: 16px;
+}
+
+.controls input {
+    outline: none;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin: 8px 0;
+    padding: 4px;
+    font-size: 16px;
+}
+
+.controls input:valid {
+    border: 1px solid green;
+}
+
+.controls input:invalid {
+    border: 1px solid black;
 }
 
 .actions {

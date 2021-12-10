@@ -11,7 +11,7 @@
     /* min-width: 240px; */
     margin: 16px;
     padding: 6px;
-
+    position: relative;
         /* animate vergrößern/ verkleinern von list */
     /* transition: all 1s ease-out; */
 }
@@ -54,4 +54,17 @@
 
 .todolist h2 {
     text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.icon {
+    font-size: 30px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
 }
