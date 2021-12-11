@@ -1,57 +1,112 @@
 .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgba(10, 78, 100, 0.8);
-    border-radius: 6px;
-    margin: 8px auto 8px auto;
-    color: black;
-    width: 44px;
-    height: 44px;
-    margin: 4px;
-    background: #4f78ee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(10, 78, 100, 0.8);
+  border-radius: 6px;
+  margin: 8px auto 8px auto;
+  color: black;
+  width: 44px;
+  height: 44px;
+  margin: 4px;
+  background: #4f78ee;
+  background: transparent;
+  border: 2px solid black;
 }
 
 .button:hover {
-    /* background: #4f78ee; */
-    color: white;
-    border: 1px solid rgba(10, 78, 100, 1);
-    cursor: pointer;
+  /* background: #4f78ee; */
+  color: white;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.big {
+  width: 120px;
+}
+
+/* .big:hover {
+  color: black;
+  /* add a hover effect for big buttons */
+ 
+
+.bigBtn {
+  width: 100%;
 }
 
 .container {
-    /* Wofür ist das nochmal wichtig? Fr den Tip Text? */
-    position: relative;
+  position: relative;
 }
 
 .icon {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .tip {
-    color: black;
-    background: #f7f9fe;
-    position: absolute;
-    top: 60px;
-    left: -59px;
-    width: 160px;
-    padding: 6px;
-    z-index: 10;
-    margin: 0px 4px;
-    border: 1px solid white;
-    border-radius: 8px;
-    box-shadow: 0px 10px 20px -5px rgba(50, 50, 93, 0.25), 0px 6px 14px -8px rgba(0, 0, 0, 0.3);
+  color: black;
+  background: #f7f9fe;
+  position: absolute;
+  top: 60px;
+  left: -59px;
+  width: 160px;
+  padding: 6px;
+  z-index: 10;
+  margin: 0px 4px;
+  border: 1px solid white;
+  border-radius: 8px;
+  box-shadow: 0px 10px 20px -5px rgba(50, 50, 93, 0.25),
+    0px 6px 14px -8px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 500px) {
-    .tip {
-        left: -46px;
-        /* is not exactly in the middle */
-    }
+  .tip {
+    left: -46px;
+    /* is not exactly in the middle */
+  }
+}
+
+.tip-arrow-border {
+  position: absolute;
+  top: -9px;
+  left: 70px;
+  /* left: 0; */
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid black;
+  width: 0;
+  height: 0;
+}
+
+.tip-arrow-background {
+  position: absolute;
+  left: -10px;
+  /* left: 0; */
+  top: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+  width: 0;
+  height: 0;
+}
+
+.bigtip {
+  left: -20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.tip-content {
+  padding: 10px; /* <--------------------------------------- optional */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem; /* <------------------------------ optional */
+  box-shadow: 0 1px 3px rgba(200, 200, 200, 0.7); /* <------ optional */
+  overflow: hidden; /* <------------------------------------ optional */
 }
 
 .addBtn {
-    position: absolute;
-    top: 0;
-    right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 }

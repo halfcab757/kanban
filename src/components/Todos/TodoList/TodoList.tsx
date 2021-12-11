@@ -5,7 +5,6 @@ import Todo from '../../../models/todo';
 
 import TodoItem from '../TodoItem/TodoItem';
 import Button from '../../UI/Button/Button';
-import ShowButton from '../../UI/ShowButton/ShowButton';
 import { TodosContext } from '../../../store/todos-context';
 
 const TodoList: React.FC<{
@@ -51,12 +50,11 @@ const TodoList: React.FC<{
                 status={item.status}
                 key={item.id}
                 id={item.id}
+                color={item.color}
               />
             ))}
       </ul>
       {endOfList < items.length && (
-        // <Button type='button' color='green' size='small' clickHandler={showMoreItemsHandler}>Show more todos</Button>
-        // <ShowButton type="down" clickHandler={showMoreItemsHandler} />
         <div className={classes.actions}>
           <Button
             type="button"
@@ -67,8 +65,6 @@ const TodoList: React.FC<{
         </div>
       )}
       {endOfList > 3 && (
-        // <Button type='button' color='green' size='small' clickHandler={showLessItemsHandler}>Show less todos</Button>
-        // <ShowButton type="up" clickHandler={showLessItemsHandler} />
         <div className={classes.actions}>
           <Button
             type="button"
@@ -87,26 +83,27 @@ const TodoList: React.FC<{
           clickHandler={todosCtx.deleteDoneTodos}
         />
         </div>
-        // <ShowButton type="clean" clickHandler={todosCtx.deleteDoneTodos} />
       )}
     </Fragment>
   );
 
   let title = <h2>{props.title}</h2>;
 
-  const addButton = (
-    <Button
-      type="button"
-      tipText="ADD A NEW TO DO"
-      action="START-TO-ADD"
-      clickHandler={todosCtx.toggleAddTodo}
-    />
-  );
+  // const addButton = (
+  //   <Button
+  //     type="button"
+  //     tipText="ADD A NEW TO DO"
+  //     action="START-TO-ADD"
+  //     clickHandler={todosCtx.toggleAddTodo}
+  //   />
+  // );
+
+  // I think i can delete this addButton
 
   return (
     <div className={classes.todolist}>
       {title}
-      {props.title === 'TO DO' && addButton}
+      {/* {props.title === 'TO DO' && addButton} */}
       {!props.showItems && (
         <span onClick={props.onShow.bind(null, props.title)}>
           <i className="fas fa-arrow-circle-down"></i>

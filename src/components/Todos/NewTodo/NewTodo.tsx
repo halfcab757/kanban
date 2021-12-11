@@ -35,38 +35,40 @@ const NewTodo: React.FC = () => {
 
   return (
     <Modal onClose={todosCtx.toggleAddTodo}>
-      <h3 className={classes.title}>Let's add a new todo</h3>
-      <form className={classes.form} onSubmit={submitHandler}>
-        <div className={classes.controls}>
-          <label htmlFor="text">New Todo</label>
-          <input
-            type="text"
-            ref={todoInputRef}
-            minLength={3}
-            required
-            id="text"
-            placeholder="e.g. Call my old friend Max"
-          />
-        </div>
-        <div className={classes.actions}>
-          <Button
-            type='submit'
-            action='ADD'
-            tipText='ADD TODO'
-            clickHandler={() => {}}  
-          >
-            ADD
-          </Button>
-          <Button
-            type='button'
-            action='CANCEL'
-            tipText='CANCEL ADDING'
-            clickHandler={todosCtx.toggleAddTodo}  
-          >
-            Cancel
-          </Button>
-        </div>
-      </form>
+      <div className={classes.container}>
+        {/* <h3 className={classes.title}>Let's add a new todo</h3> */}
+        <form className={classes.form} onSubmit={submitHandler}>
+          <div className={classes.controls}>
+            <label htmlFor="text">LET'S ADD A NEW TODO</label>
+            <input
+              type="text"
+              ref={todoInputRef}
+              minLength={3}
+              required
+              id="text"
+              placeholder="e.g. Call my old friend Max"
+            />
+          </div>
+          <div className={classes.actions}>
+            <Button
+              type="submit"
+              action="CONFIRM"
+              tipText="ADD TODO"
+              clickHandler={() => {}}
+            >
+              ADD
+            </Button>
+            <Button
+              type="button"
+              action='CANCEL-FORM'
+              tipText="CANCEL ADDING"
+              clickHandler={todosCtx.toggleAddTodo}
+            >
+              Cancel
+            </Button>
+          </div>
+        </form>
+      </div>
     </Modal>
   );
 };

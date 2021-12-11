@@ -1,3 +1,7 @@
+.container {
+    width: 400px;
+}
+
 .title {
     text-align: center;
     margin: 12px 0;
@@ -15,30 +19,34 @@
 }
 
 .controls label {
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 6px 0;
 }
 
 .controls input {
     outline: none;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 4px;
     margin: 8px 0;
-    padding: 4px;
+    padding: 6px;
     font-size: 16px;
+    background: #caeef9;
 }
 
 .controls input:valid {
-    border: 1px solid green;
+    border: 2px solid green;
 }
 
 .controls input:invalid {
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 .actions {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 12px;
 }
 

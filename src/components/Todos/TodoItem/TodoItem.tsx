@@ -1,31 +1,31 @@
-import { Fragment, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 
 import classes from './TodoItem.module.css';
-import Tip from '../Tip/Tip';
+// import Tip from '../Tip/Tip';
 import Button from '../../UI/Button/Button';
-import CloseButton from '../../UI/CloseButton/CloseButton';
+// import CloseButton from '../../UI/CloseButton/CloseButton';
 import { TodosContext } from '../../../store/todos-context';
 
-const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
+const TodoItem: React.FC<{ title: string; status: string; id: string, color: string }> = (
   props
 ) => {
   const [isEditing, setIsEditing] = useState(false);
   const [doneText, setDoneText] = useState('DONE?'); // const [isDeleting, setIsDeleting] = useState(false);
-  const [tipText, setTipText] = useState('INVISIBLE');
+  // const [tipText, setTipText] = useState('INVISIBLE');
   const todosCtx = useContext(TodosContext);
 
-  const changeTipText = (text: string) => {
-    setTipText(text);
-  };
+  // const changeTipText = (text: string) => {
+  //   setTipText(text);
+  // };
 
-  const resetTipText = () => {
-    setTipText('INVISIBLE');
-  };
+  // const resetTipText = () => {
+  //   setTipText('INVISIBLE');
+  // };
 
   const toggleEditHandler = () => {
-    if (!isEditing) {
-      setTipText('MOVE TO DOING');
-    }
+    // if (!isEditing) {
+    //   setTipText('MOVE TO DOING');
+    // }
     setIsEditing((prevState) => {
       return !prevState;
     });
@@ -77,7 +77,7 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
         <Button
           tipText="MOVE BACK TO TO DO"
           type="button"
-          action="BACKWARDS-TO-NEW"
+          action='ONE-STEP-BACKWARDS-TO-NEW'
           clickHandler={todosCtx.moveItem.bind(null, props.id, 'NEW')}
         />
         <Button
@@ -111,7 +111,7 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
         />
         <Button
           tipText="MOVE BACK TO TO DO"
-          action="BACKWARDS-TO-NEW"
+          action='TWO-STEPS-BACKWARDS-TO-NEW'
           type="button"
           clickHandler={todosCtx.moveItem.bind(null, props.id, 'NEW')}
         />
@@ -130,9 +130,11 @@ const TodoItem: React.FC<{ title: string; status: string; id: string }> = (
     );
   }
 
+  // set random colors to item background
+
   return (
     <li>
-      <div className={classes.item} id={props.id}>
+      <div className={classes.item} id={props.id} style={{background: props.color}}>
         <h3>{props.title}</h3>
         {!isEditing && (
           <div className={classes.actions}>

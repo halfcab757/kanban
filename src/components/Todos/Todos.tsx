@@ -1,9 +1,12 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, Fragment } from 'react';
 
 import TodosContainer from './TodosContainer/TodosContainer';
 import TodoList from './TodoList/TodoList';
+import Button from '../UI/Button/Button';
 
 import { TodosContext } from '../../store/todos-context';
+
+import classes from './Todos.module.css';
 
 const Todos: React.FC = () => {
   const todosCtx = useContext(TodosContext);
@@ -32,15 +35,15 @@ const Todos: React.FC = () => {
       setShowProgressedTodos(false);
       setShowFinishedTodos(true);
     }
-  }
+  };
 
   useEffect(() => {
     // console.log('useeffect in todos');
     let timer: any;
     const handleResize = () => {
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-          console.log('actually updating width state');
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        console.log('actually updating width state');
         console.log(window.innerWidth);
         setWindowWidth(window.innerWidth);
       }, 100);
@@ -74,27 +77,39 @@ const Todos: React.FC = () => {
   // const freshTodos = todosCtx.items.filter(item => item.status === 'NEW');
 
   return (
-    <TodosContainer>
-      <TodoList
-        title="TO DO"
-        // items={todosCtx.freshTodos}
-        items={todosCtx.items}
-        showItems={showFreshTodos}
-        onShow={changeShownList}
-      />
-      <TodoList
-        title="DOING"
-        items={todosCtx.items}
-        showItems={showProgressedTodos}
-        onShow={changeShownList}
-      />
-      <TodoList
-        title="DONE"
-        items={todosCtx.items}
-        showItems={showFinishedTodos}
-        onShow={changeShownList}
-      />
-    </TodosContainer>
+    <Fragment>
+      <div className={classes.newtodo}>
+        <Button
+          type="submit"
+          action="CONFIRM"
+          tipText="ADD TODO"
+          clickHandler={todosCtx.toggleAddTodo}
+        >
+          ADD
+        </Button>
+      </div>
+      <TodosContainer>
+        <TodoList
+          title="TO DO"
+          // items={todosCtx.freshTodos}
+          items={todosCtx.items}
+          showItems={showFreshTodos}
+          onShow={changeShownList}
+        />
+        <TodoList
+          title="DOING"
+          items={todosCtx.items}
+          showItems={showProgressedTodos}
+          onShow={changeShownList}
+        />
+        <TodoList
+          title="DONE"
+          items={todosCtx.items}
+          showItems={showFinishedTodos}
+          onShow={changeShownList}
+        />
+      </TodosContainer>
+    </Fragment>
   );
 };
 

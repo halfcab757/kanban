@@ -13,22 +13,21 @@ const DeleteConfirmation: React.FC = () => {
   return (
     <Modal onClose={todosCtx.cancelDeleteHandler}>
       <div className={classes.confirmation}>
-        <h3>Delete this todo?</h3>
         <div className={classes.item}>{todosCtx.selectedItem?.text}</div>
-        
+        <h3>DELETE THIS TO DO?</h3>
         <div className={classes.actions}>
           <Button
-            tipText='DELETE TO DO'
+            tipText='YES, DELETE IT'
             type='button'
-            action='DELETE'
+            action='CONFIRM'
             clickHandler={todosCtx.deleteTodo.bind(
               null,
               todosCtx.selectedItem!.id
             )}
           />
           <Button
-            tipText='CANCEL AND KEEP TO DO'
-            action='CANCEL'
+            tipText='NO, I WILL KEEP IT'
+            action='CANCEL-FORM'
             type="button"
             clickHandler={todosCtx.cancelDeleteHandler}
           />
