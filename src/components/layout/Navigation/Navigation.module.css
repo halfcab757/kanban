@@ -1,25 +1,14 @@
 .navigation {
-    /* background: coral; */
-    /* background: #4feec6; */
     background: #4f78ee;
 }
 
 .navigation > div {
     display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
-    align-items: center;
-    /* height: 48px; */
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: center; */
     padding: 18px;
     width: 90%;
     max-width: 975px;
     margin: 0 auto;
-}
-
-@media (min-width: 450px) {
-    .navigation > div {
-        flex-direction: row;
-        justify-content: space-between;
-        /* align-items: center; */
-    }
 }

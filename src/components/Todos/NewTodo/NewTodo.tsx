@@ -35,8 +35,6 @@ const NewTodo: React.FC = () => {
 
   return (
     <Modal onClose={todosCtx.toggleAddTodo}>
-      <div className={classes.container}>
-        {/* <h3 className={classes.title}>Let's add a new todo</h3> */}
         <form className={classes.form} onSubmit={submitHandler}>
           <div className={classes.controls}>
             <label htmlFor="text">LET'S ADD A NEW TODO</label>
@@ -68,7 +66,6 @@ const NewTodo: React.FC = () => {
             </Button>
           </div>
         </form>
-      </div>
     </Modal>
   );
 };

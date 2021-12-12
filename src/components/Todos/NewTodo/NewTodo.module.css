@@ -1,15 +1,9 @@
-.container {
-    width: 400px;
-}
-
 .title {
     text-align: center;
     margin: 12px 0;
 }
 
 .form {
-    width: 90%;
-    max-width: 330px;
     margin: 0 auto;
 }
 
@@ -32,7 +26,6 @@
     margin: 8px 0;
     padding: 6px;
     font-size: 16px;
-    background: #caeef9;
 }
 
 .controls input:valid {

@@ -54,6 +54,9 @@ const TodoList: React.FC<{
               />
             ))}
       </ul>
+      {items.length === 0 && (
+        <p className={classes.notodos}>NO TO DOS IN THIS LIST</p>
+      )}
       {endOfList < items.length && (
         <div className={classes.actions}>
           <Button
@@ -76,40 +79,63 @@ const TodoList: React.FC<{
       )}
       {props.title === 'DONE' && items.length > 0 && (
         <div className={classes.actions}>
-        <Button
-          type="button"
-          action="DELETE"
-          tipText="DELETE ALL DONE TO DOS"
-          clickHandler={todosCtx.deleteDoneTodos}
-        />
+          <Button
+            type="button"
+            action="DELETE"
+            tipText="DELETE ALL DONE TO DOS"
+            clickHandler={todosCtx.deleteDoneTodos}
+          />
         </div>
       )}
     </Fragment>
   );
 
+  let itemListPlaceholder = (
+    <div className={classes.placeholder}>
+      <p>
+        THIS LIST IS EMPTY RIGHT NOW.
+        <br /> ADD A NEW TODO
+      </p>
+      <Button
+        type="submit"
+        action="CONFIRM"
+        tipText="ADD TODO"
+        clickHandler={todosCtx.toggleAddTodo}
+      >
+        ADD
+      </Button>
+    </div>
+  );
+
+  if (props.title === 'DOING' || props.title === 'DONE') {
+    itemListPlaceholder = (
+      <div className={classes.placeholder}>
+        <p>
+          THIS LIST IS EMPTY RIGHT NOW.
+          <br /> KEEP WORKING ON YOUR TODOS
+        </p>
+      </div>
+    );
+  }
+
   let title = <h2>{props.title}</h2>;
-
-  // const addButton = (
-  //   <Button
-  //     type="button"
-  //     tipText="ADD A NEW TO DO"
-  //     action="START-TO-ADD"
-  //     clickHandler={todosCtx.toggleAddTodo}
-  //   />
-  // );
-
-  // I think i can delete this addButton
 
   return (
     <div className={classes.todolist}>
       {title}
       {/* {props.title === 'TO DO' && addButton} */}
       {!props.showItems && (
-        <span onClick={props.onShow.bind(null, props.title)}>
-          <i className="fas fa-arrow-circle-down"></i>
-        </span>
+        <div className={classes.actions}>
+          <Button
+            type="button"
+            action="MORE"
+            tipText="SHOW THIS LIST"
+            clickHandler={props.onShow.bind(null, props.title)}
+          />
+        </div>
       )}
-      {props.showItems && itemsList}
+      {props.showItems && items.length > 0 && itemsList}
+      {props.showItems && items.length === 0 && itemListPlaceholder}
     </div>
   );
 };

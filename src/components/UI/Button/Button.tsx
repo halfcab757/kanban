@@ -2,8 +2,6 @@ import { useState } from 'react';
 
 import classes from './Button.module.css';
 
-// eventlistener auf todoList oder auf button - Nachteil: sehr viele Listener
-
 const Button: React.FC<{
   type: 'button' | 'submit';
   clickHandler: (event: any) => void;
@@ -25,18 +23,17 @@ const Button: React.FC<{
     | 'SHOW-LIST'
     | 'DELETE';
   tipText: string;
+  // windowWidth: number
 }> = (props) => {
   const [showTip, setShowTip] = useState(false);
 
   const displayTip = (event: any) => {
-    console.log('mouse enters');
     if (!showTip) {
       setShowTip((prevState) => true);
     }
   };
 
   const hideTip = (event: any) => {
-    console.log('mouse leaves');
     if (showTip) {
       setShowTip((prevState) => false);
     }
@@ -98,17 +95,25 @@ const Button: React.FC<{
   let cssClasses = `${classes.button}`;
 
   if (props.action === 'START-TO-ADD') {
-    divClasses = `${classes.addBtn}`;
+    cssClasses = `${classes.button} ${classes.addBtn}`;
   }
 
-  if (props.action === 'CONFIRM' || props.action === 'CANCEL-FORM') {
-    divClasses = `${classes.container} ${classes.big}`;
-    cssClasses = `${classes.button} ${classes.bigBtn}`;
+  if (props.action === 'CONFIRM' || props.action === 'CANCEL-FORM' || props.action === 'SHOW-LIST' || props.action === 'MORE' || props.action === 'LESS') {
+    // divClasses = `${classes.container} ${classes.big}`;
+    cssClasses = `${classes.button}`;
+  }
+
+  if (props.action === 'FORWARDS-TO-DOING' || props.action === 'FORWARDS-TO-DONE' || props.action === 'DELETE') {
+    cssClasses = `${classes.button} ${classes.edit}`;
   }
 
   let tipCssClasses = `${classes.tip}`;
 
-  if (props.action === 'CONFIRM' || props.action === 'CANCEL-FORM') {
+  if (props.action === 'CONFIRM' || props.action === 'CANCEL-FORM' || props.action === 'MORE' || props.action === 'LESS' || props.action === 'START-TO-ADD') {
+    tipCssClasses = `${classes.tip} ${classes.bigtip}`;
+  }
+
+  if (props.action === 'EDIT' || props.action === 'CANCEL') {
     tipCssClasses = `${classes.tip} ${classes.bigtip}`;
   }
 
@@ -122,7 +127,7 @@ const Button: React.FC<{
   );
 
   return (
-    <div className={divClasses}>
+    // <div className={divClasses}>
       <button
         onMouseOver={displayTip}
         onMouseLeave={hideTip}
@@ -133,7 +138,7 @@ const Button: React.FC<{
         <span className={classes.icon}>{icon}</span>
         {showTip && tipBox}
       </button>
-    </div>
+    // </div>
   );
 };
 

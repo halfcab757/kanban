@@ -1,31 +1,18 @@
 import { useState, useContext } from 'react';
 
 import classes from './TodoItem.module.css';
-// import Tip from '../Tip/Tip';
 import Button from '../../UI/Button/Button';
-// import CloseButton from '../../UI/CloseButton/CloseButton';
+
 import { TodosContext } from '../../../store/todos-context';
 
 const TodoItem: React.FC<{ title: string; status: string; id: string, color: string }> = (
   props
 ) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [doneText, setDoneText] = useState('DONE?'); // const [isDeleting, setIsDeleting] = useState(false);
-  // const [tipText, setTipText] = useState('INVISIBLE');
+  const [doneText, setDoneText] = useState('DONE?');
   const todosCtx = useContext(TodosContext);
 
-  // const changeTipText = (text: string) => {
-  //   setTipText(text);
-  // };
-
-  // const resetTipText = () => {
-  //   setTipText('INVISIBLE');
-  // };
-
   const toggleEditHandler = () => {
-    // if (!isEditing) {
-    //   setTipText('MOVE TO DOING');
-    // }
     setIsEditing((prevState) => {
       return !prevState;
     });
@@ -43,7 +30,7 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
   };
 
   let editActions = (
-    <div className={classes.actions}>
+    <div className={classes.editactions}>
       <Button
         tipText="MOVE TO DOING"
         type="button"
@@ -73,7 +60,7 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
 
   if (props.status === 'DOING') {
     editActions = (
-      <div className={classes.actions}>
+      <div className={classes.editactions}>
         <Button
           tipText="MOVE BACK TO TO DO"
           type="button"
@@ -102,7 +89,7 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
 
   if (props.status === 'DONE') {
     editActions = (
-      <div className={classes.actions}>
+      <div className={classes.editactions}>
         <Button
           tipText="MOVE BACK TO DOING"
           type="button"
@@ -129,8 +116,6 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
       </div>
     );
   }
-
-  // set random colors to item background
 
   return (
     <li>

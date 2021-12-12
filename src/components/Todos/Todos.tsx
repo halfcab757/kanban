@@ -16,8 +16,6 @@ const Todos: React.FC = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const changeShownList = (listTitle: string) => {
-    // useReducer might really be better
-    console.log('changing shown list in todos.tsx');
     if (listTitle === 'TO DO') {
       setShowFreshTodos(true);
       setShowProgressedTodos(false);
@@ -25,6 +23,7 @@ const Todos: React.FC = () => {
     }
 
     if (listTitle === 'DOING') {
+      console.log('show doing');
       setShowFreshTodos(false);
       setShowProgressedTodos(true);
       setShowFinishedTodos(false);
@@ -38,7 +37,6 @@ const Todos: React.FC = () => {
   };
 
   useEffect(() => {
-    // console.log('useeffect in todos');
     let timer: any;
     const handleResize = () => {
       clearTimeout(timer);
@@ -54,34 +52,30 @@ const Todos: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // oder gerne besser mit useReducer, weil states von einem anderen state abhängen
-    if (windowWidth < 500) {
+    if (
+      windowWidth < 700 &&
+      showFreshTodos &&
+      showProgressedTodos &&
+      showFinishedTodos
+    ) {
+      setShowFreshTodos(true);
       setShowProgressedTodos(false);
       setShowFinishedTodos(false);
     }
 
-    if (windowWidth > 500) {
+    if (windowWidth > 700) {
+      setShowFreshTodos(true);
       setShowProgressedTodos(true);
       setShowFinishedTodos(true);
     }
   }, [windowWidth]);
 
-  // useEffect(() => {
-  //     const timer = setTimeout(() => {
-  //         setWindowWidth(window.innerWidth);
-  //     }, 100);
-
-  //     return clearTimeout(timer);
-  // }, [window.innerWidth]);
-
-  // const freshTodos = todosCtx.items.filter(item => item.status === 'NEW');
-
   return (
     <Fragment>
-      <div className={classes.newtodo}>
+      <div className={classes.buttoncontainer}>
         <Button
-          type="submit"
-          action="CONFIRM"
+          type="button"
+          action="START-TO-ADD"
           tipText="ADD TODO"
           clickHandler={todosCtx.toggleAddTodo}
         >

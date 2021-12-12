@@ -5,18 +5,13 @@
     flex-wrap: nowrap;
     width: 95%;
     max-width: 900px;
-    margin: 0 auto;
+    margin: 0 auto 70px auto;
     /* font-weight: lighter; */
     /* height: 100%; */
 }
 
-@media (min-width: 500px) {
+@media (min-width: 700px) {
     .container {
         flex-direction: row;
-        /* justify-content: center;
-        flex-wrap: nowrap;
-        width: 95%;
-        margin: 0 auto; */
-        /* height: 100%; */
     }
 }

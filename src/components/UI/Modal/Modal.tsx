@@ -8,6 +8,7 @@ import Backdrop from '../Backdrop/Backdrop';
 const Modal: React.FC<{onClose: () => void}> = (props) => {
   return (
     <Fragment>
+      
       {ReactDOM.createPortal(
         <Backdrop onClose={props.onClose}/>,
         document.getElementById('backdrop-root')!

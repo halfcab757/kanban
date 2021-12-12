@@ -13,7 +13,7 @@ const DeleteConfirmation: React.FC = () => {
   return (
     <Modal onClose={todosCtx.cancelDeleteHandler}>
       <div className={classes.confirmation}>
-        <div className={classes.item}>{todosCtx.selectedItem?.text}</div>
+        <div className={classes.item} style={{background: todosCtx.selectedItem!.color}} >{todosCtx.selectedItem?.text}</div>
         <h3>DELETE THIS TO DO?</h3>
         <div className={classes.actions}>
           <Button

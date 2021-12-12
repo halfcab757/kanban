@@ -1,12 +1,13 @@
 .button {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid rgba(10, 78, 100, 0.8);
   border-radius: 6px;
-  margin: 8px auto 8px auto;
   color: black;
-  width: 44px;
+  width: 220px;
+
   height: 44px;
   margin: 4px;
   background: #4f78ee;
@@ -14,8 +15,11 @@
   border: 2px solid black;
 }
 
+.edit {
+  width: 66px;
+}
+
 .button:hover {
-  /* background: #4f78ee; */
   color: white;
   border: 2px solid black;
   cursor: pointer;
@@ -25,17 +29,15 @@
   width: 120px;
 }
 
-/* .big:hover {
-  color: black;
-  /* add a hover effect for big buttons */
- 
-
-.bigBtn {
-  width: 100%;
+.bigBtn:hover {
+  background: #4FC7EE;
 }
 
 .container {
   position: relative;
+  margin: 0 6px 0 6px;
+  /* width: 120px; */
+  width: 100%;
 }
 
 .icon {
@@ -46,24 +48,19 @@
   color: black;
   background: #f7f9fe;
   position: absolute;
-  top: 60px;
-  left: -59px;
+  top: 54px;
+  left: -48px;
   width: 160px;
   padding: 6px;
   z-index: 10;
-  margin: 0px 4px;
+  margin: 0px 0px;
   border: 1px solid white;
   border-radius: 8px;
   box-shadow: 0px 10px 20px -5px rgba(50, 50, 93, 0.25),
     0px 6px 14px -8px rgba(0, 0, 0, 0.3);
 }
 
-@media (max-width: 500px) {
-  .tip {
-    left: -46px;
-    /* is not exactly in the middle */
-  }
-}
+
 
 .tip-arrow-border {
   position: absolute;
@@ -90,23 +87,19 @@
 }
 
 .bigtip {
-  left: -20px;
+  left: 26px;
 }
 
 .hidden {
   display: none;
 }
 
-.tip-content {
-  padding: 10px; /* <--------------------------------------- optional */
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem; /* <------------------------------ optional */
-  box-shadow: 0 1px 3px rgba(200, 200, 200, 0.7); /* <------ optional */
-  overflow: hidden; /* <------------------------------------ optional */
+.addBtn {
+  /* width: 200px; */
+  margin: 12px auto 0 auto;
 }
 
-.addBtn {
-  position: absolute;
-  top: 0;
-  right: 0;
+.addBtn:hover {
+  /* background: #4FC7EE; */
+  background: black;
 }
