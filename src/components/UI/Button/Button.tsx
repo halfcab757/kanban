@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import classes from './Button.module.css';
 
@@ -21,9 +21,9 @@ const Button: React.FC<{
     | 'CONFIRM'
     | 'CANCEL-FORM'
     | 'SHOW-LIST'
-    | 'DELETE';
+    | 'DELETE'
+    | 'CLEAR-LIST';
   tipText: string;
-  // windowWidth: number
 }> = (props) => {
   const [showTip, setShowTip] = useState(false);
 
@@ -87,34 +87,48 @@ const Button: React.FC<{
     case 'SHOW-LIST':
       icon = <i className="fas fa-arrow-circle-down"></i>;
       break;
+    case 'CLEAR-LIST':
+      icon = <i className="fas fa-trash-alt"></i>;
+      break;
     default:
       icon = <i className="fas fa-edit"></i>;
   }
 
-  let divClasses = `${classes.container}`;
-  let cssClasses = `${classes.button}`;
+  let buttonCssClasses = `${classes.button}`;
 
   if (props.action === 'START-TO-ADD') {
-    cssClasses = `${classes.button} ${classes.addBtn}`;
+    buttonCssClasses = `${classes.button} ${classes.addBtn}`;
   }
 
-  if (props.action === 'CONFIRM' || props.action === 'CANCEL-FORM' || props.action === 'SHOW-LIST' || props.action === 'MORE' || props.action === 'LESS') {
-    // divClasses = `${classes.container} ${classes.big}`;
-    cssClasses = `${classes.button}`;
+  if (props.action === 'CONFIRM' || props.action === 'CANCEL-FORM') {
+    buttonCssClasses = `${classes.button} ${classes.big}`;
   }
 
-  if (props.action === 'FORWARDS-TO-DOING' || props.action === 'FORWARDS-TO-DONE' || props.action === 'DELETE') {
-    cssClasses = `${classes.button} ${classes.edit}`;
+  if (
+    props.action === 'SHOW-LIST' ||
+    props.action === 'MORE' ||
+    props.action === 'LESS' ||
+    props.action === 'CLEAR-LIST'
+  ) {
+    buttonCssClasses = `${classes.button} ${classes.hugebtn}`;
   }
 
   let tipCssClasses = `${classes.tip}`;
 
-  if (props.action === 'CONFIRM' || props.action === 'CANCEL-FORM' || props.action === 'MORE' || props.action === 'LESS' || props.action === 'START-TO-ADD') {
+  if (
+    props.action === 'MORE' ||
+    props.action === 'LESS' ||
+    props.action === 'START-TO-ADD'
+  ) {
     tipCssClasses = `${classes.tip} ${classes.bigtip}`;
   }
 
   if (props.action === 'EDIT' || props.action === 'CANCEL') {
-    tipCssClasses = `${classes.tip} ${classes.bigtip}`;
+    tipCssClasses = `${classes.tip} ${classes.edittip}`;
+  }
+
+  if (props.action === 'CONFIRM' || props.action === 'CANCEL-FORM') {
+    tipCssClasses = `${classes.tip} ${classes.biggertip}`;
   }
 
   const tipBox = (
@@ -127,18 +141,19 @@ const Button: React.FC<{
   );
 
   return (
-    // <div className={divClasses}>
+    <Fragment>
       <button
         onMouseOver={displayTip}
         onMouseLeave={hideTip}
         onClick={props.clickHandler}
         type={props.type}
-        className={cssClasses}
+        className={buttonCssClasses}
       >
         <span className={classes.icon}>{icon}</span>
         {showTip && tipBox}
+        {/* {tipBox} */}
       </button>
-    // </div>
+    </Fragment>
   );
 };
 

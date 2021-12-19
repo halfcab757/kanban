@@ -40,54 +40,56 @@ const TodoList: React.FC<{
 
   let itemsList = (
     <Fragment>
-      <ul>
+      <ul className={classes.todolist__list}>
         {items.length > 0 &&
-          items
-            .slice(0, endOfList)
-            .map((item) => (
+          items.slice(0, endOfList).map((item) => (
+            <li className={classes.todolist__listitem} key={item.id}>
               <TodoItem
                 title={item.text}
                 status={item.status}
-                key={item.id}
                 id={item.id}
                 color={item.color}
               />
-            ))}
+            </li>
+          ))}
       </ul>
-      {items.length === 0 && (
+      {/* {items.length === 0 && (
         <p className={classes.notodos}>NO TO DOS IN THIS LIST</p>
-      )}
-      {endOfList < items.length && (
-        <div className={classes.actions}>
-          <Button
-            type="button"
-            action="MORE"
-            tipText="SHOW MORE TO DOS"
-            clickHandler={showMoreItemsHandler}
-          />
-        </div>
-      )}
-      {endOfList > 3 && (
-        <div className={classes.actions}>
-          <Button
-            type="button"
-            action="LESS"
-            tipText="SHOW FEWER TO DOS"
-            clickHandler={showLessItemsHandler}
-          />
-        </div>
-      )}
+      )} */}
       {props.title === 'DONE' && items.length > 0 && (
         <div className={classes.actions}>
           <Button
             type="button"
-            action="DELETE"
+            action="CLEAR-LIST"
             tipText="DELETE ALL DONE TO DOS"
-            clickHandler={todosCtx.deleteDoneTodos}
+            // clickHandler={todosCtx.deleteDoneTodos}
+            clickHandler={todosCtx.toggleClearingTodos}
           />
         </div>
       )}
     </Fragment>
+  );
+
+  const showMoreButton = (
+    <div className={classes.actions}>
+      <Button
+        type="button"
+        action="MORE"
+        tipText="SHOW MORE TO DOS"
+        clickHandler={showMoreItemsHandler}
+      />
+    </div>
+  );
+
+  const ShowLessButton = (
+    <div className={classes.actions}>
+      <Button
+        type="button"
+        action="LESS"
+        tipText="SHOW FEWER TO DOS"
+        clickHandler={showLessItemsHandler}
+      />
+    </div>
   );
 
   let itemListPlaceholder = (
@@ -118,12 +120,11 @@ const TodoList: React.FC<{
     );
   }
 
-  let title = <h2>{props.title}</h2>;
+  const listCssClasses = `${classes.scrollable} ${(!props.showItems || items.length === 0) && classes.notvisible}`;
 
   return (
     <div className={classes.todolist}>
-      {title}
-      {/* {props.title === 'TO DO' && addButton} */}
+      <h2 className={classes.todolist__title}>{props.title}</h2>
       {!props.showItems && (
         <div className={classes.actions}>
           <Button
@@ -134,8 +135,13 @@ const TodoList: React.FC<{
           />
         </div>
       )}
-      {props.showItems && items.length > 0 && itemsList}
-      {props.showItems && items.length === 0 && itemListPlaceholder}
+      <div className={listCssClasses}>
+        {/* maybe find a solution with whole list scolling */}
+        {props.showItems && items.length > 0 && itemsList}
+      </div>
+      {(props.showItems && endOfList < items.length) && showMoreButton}
+      {(props.showItems && endOfList > 3) && ShowLessButton}
+      {(props.showItems && items.length === 0) && itemListPlaceholder}
     </div>
   );
 };

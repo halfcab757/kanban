@@ -19,29 +19,39 @@
     margin: 0 0 6px 0;
 }
 
-.controls input {
+.input {
     outline: none;
     border: 2px solid black;
-    border-radius: 4px;
+    border-radius: 6px;
     margin: 8px 0;
     padding: 6px;
     font-size: 16px;
+    background: transparent;
 }
 
-.controls input:valid {
-    border: 2px solid green;
+.input::placeholder {
+    color: rgba(0, 0, 0, 0.8);
+    /* whats that kind of pseudo class called? */
 }
 
-.controls input:invalid {
-    border: 2px solid black;
+.invalid {
+    border: 2px solid red;
 }
 
 .actions {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    margin: 12px;
+    justify-content: center;
+    margin: 12px 0;
 }
 
+.errormessage {
+    display: block;
+    opacity: 0;
+    transition: all 800ms ease-out;
+    margin: 2px 0;
+}
 
-
+.visible {
+    opacity: 1;
+}

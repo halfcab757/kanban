@@ -15,6 +15,18 @@
   border: 2px solid black;
 }
 
+@media (min-width: 800px) {
+  .button {
+    width: 160px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .button {
+    width: 220px;
+  }
+}
+
 .edit {
   width: 66px;
 }
@@ -27,16 +39,46 @@
 
 .big {
   width: 120px;
+  /* margin: 0; */
+}
+
+.big:hover {
+  background: #4fc7ee;
+}
+
+@media (min-width: 700px) {
+  .big {
+    width: 160px;
+  }
 }
 
 .bigBtn:hover {
-  background: #4FC7EE;
+  background: #4fc7ee;
+}
+
+.hugebtn {
+  width: 220px;
+}
+
+@media (min-width: 800px) {
+  .hugebtn {
+    width: 160px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .hugebtn {
+    width: 220px;
+  }
+}
+
+.hugebtn:hover {
+  background: #4fc7ee;
 }
 
 .container {
   position: relative;
   margin: 0 6px 0 6px;
-  /* width: 120px; */
   width: 100%;
 }
 
@@ -54,19 +96,15 @@
   padding: 6px;
   z-index: 10;
   margin: 0px 0px;
-  border: 1px solid white;
+  border: 1px solid transparent;
   border-radius: 8px;
-  box-shadow: 0px 10px 20px -5px rgba(50, 50, 93, 0.25),
-    0px 6px 14px -8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 10px rgb(0, 0, 0);
 }
-
-
 
 .tip-arrow-border {
   position: absolute;
   top: -9px;
   left: 70px;
-  /* left: 0; */
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-bottom: 10px solid black;
@@ -77,7 +115,6 @@
 .tip-arrow-background {
   position: absolute;
   left: -10px;
-  /* left: 0; */
   top: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
@@ -86,8 +123,42 @@
   height: 0;
 }
 
+.edittip {
+  left: 22px;
+}
+
 .bigtip {
   left: 26px;
+}
+
+.biggertip {
+  left: -23px;
+}
+
+@media (min-width: 700px) {
+  .biggertip {
+    left: -3px;
+  }
+}
+
+@media (min-width: 800px) {
+  .tip {
+    left: -2px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .tip {
+    left: -48px;
+  }
+
+  .edittip {
+    left: 22px;
+  }
+
+  .bigtip {
+    left: 26px;
+  }
 }
 
 .hidden {
@@ -95,11 +166,9 @@
 }
 
 .addBtn {
-  /* width: 200px; */
-  margin: 12px auto 0 auto;
+  margin: 16px auto 0 auto;
 }
 
 .addBtn:hover {
-  /* background: #4FC7EE; */
-  background: black;
+  background: #4fc7ee;
 }

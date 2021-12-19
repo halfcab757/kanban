@@ -1,33 +1,16 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
+
+import { TodosContext } from '../../../store/todos-context';
 
 import classes from './TodoItem.module.css';
 import Button from '../../UI/Button/Button';
 
-import { TodosContext } from '../../../store/todos-context';
+
 
 const TodoItem: React.FC<{ title: string; status: string; id: string, color: string }> = (
   props
 ) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [doneText, setDoneText] = useState('DONE?');
   const todosCtx = useContext(TodosContext);
-
-  const toggleEditHandler = () => {
-    setIsEditing((prevState) => {
-      return !prevState;
-    });
-  };
-
-  const toggleDoneText = () => {
-    console.log('toggling text');
-    if (doneText === 'DONE?') {
-      setDoneText('DONE!');
-    }
-
-    if (doneText === 'DONE!') {
-      setDoneText('DONE?');
-    }
-  };
 
   let editActions = (
     <div className={classes.editactions}>
@@ -35,20 +18,18 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
         tipText="MOVE TO DOING"
         type="button"
         action="FORWARDS-TO-DOING"
-        clickHandler={todosCtx.moveItem.bind(null, props.id, 'DOING')}
+        clickHandler={todosCtx.moveItem.bind(null, 'DOING')}
       />
       <Button
         tipText="MOVE TO DONE"
         action="FORWARDS-TO-DONE"
         type="button"
-        clickHandler={todosCtx.moveItem.bind(null, props.id, 'DONE')}
+        clickHandler={todosCtx.moveItem.bind(null, 'DONE')}
       />
-      {/* <button onMouseOver={toggleDoneText} onMouseLeave={toggleDoneText}>{doneText}</button> */}
       <Button
         tipText="DELETE THIS TO DO"
         type="button"
         action="DELETE"
-        // clickHandler={todosCtx.deleteTodo.bind(null, props.id)}
         clickHandler={todosCtx.startDeleteHandler.bind(
           null,
           props.id,
@@ -65,13 +46,13 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
           tipText="MOVE BACK TO TO DO"
           type="button"
           action='ONE-STEP-BACKWARDS-TO-NEW'
-          clickHandler={todosCtx.moveItem.bind(null, props.id, 'NEW')}
+          clickHandler={todosCtx.moveItem.bind(null, 'NEW')}
         />
         <Button
           tipText="MOVE TO DONE"
           type="button"
           action="FORWARDS-TO-DONE"
-          clickHandler={todosCtx.moveItem.bind(null, props.id, 'DONE')}
+          clickHandler={todosCtx.moveItem.bind(null, 'DONE')}
         />
         <Button
           tipText="DELETE TO DO"
@@ -94,58 +75,49 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
           tipText="MOVE BACK TO DOING"
           type="button"
           action="BACKWARDS-TO-DOING"
-          clickHandler={todosCtx.moveItem.bind(null, props.id, 'DOING')}
+          clickHandler={todosCtx.moveItem.bind(null, 'DOING')}
         />
         <Button
           tipText="MOVE BACK TO TO DO"
           action='TWO-STEPS-BACKWARDS-TO-NEW'
           type="button"
-          clickHandler={todosCtx.moveItem.bind(null, props.id, 'NEW')}
+          clickHandler={todosCtx.moveItem.bind(null, 'NEW')}
         />
         <Button
           tipText="DELETE TO DO"
           action="DELETE"
           type="button"
-          // clickHandler={todosCtx.deleteTodo.bind(null, props.id)}
-          clickHandler={todosCtx.startDeleteHandler.bind(
-            null,
-            props.id,
-            props.title
-          )}
+          clickHandler={todosCtx.startDeleteHandler}
         />
       </div>
     );
   }
 
   return (
-    <li>
       <div className={classes.item} id={props.id} style={{background: props.color}}>
-        <h3>{props.title}</h3>
-        {!isEditing && (
+        <h3 className={classes.item__title}>{props.title}</h3>
+        {(!todosCtx.selectedItem || todosCtx.selectedItem.id !== props.id) && (
           <div className={classes.actions}>
             <Button
               tipText="EDIT THIS TO DO"
               type="button"
               action="EDIT"
-              clickHandler={toggleEditHandler}
+              clickHandler={todosCtx.startEditingHandler.bind(null, props.id)}
             />
           </div>
         )}
-
-        {/* show tip like on asana */}
-        {isEditing && (
+        {todosCtx.selectedItem && todosCtx.selectedItem.id === props.id && (
           <div className={classes.actions}>
             <Button
               type="button"
               tipText="CANCEL EDITING"
               action="CANCEL"
-              clickHandler={toggleEditHandler}
+              clickHandler={todosCtx.cancelEditingHandler}
             />
           </div>
         )}
-        {isEditing && editActions}
+        {todosCtx.selectedItem && todosCtx.selectedItem.id === props.id && editActions}
       </div>
-    </li>
   );
 };
 

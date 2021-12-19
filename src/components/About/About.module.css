@@ -1,0 +1,28 @@
+.about {
+  background: #f0f4fd;
+  width: 90%;
+  margin: 16px auto;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.about h2,
+.about h3 {
+  text-align: center;
+}
+
+.about h2 + p {
+  text-align: center;
+}
+
+p {
+  line-height: 1.5;
+}
+
+.firstletter {
+  float: left;
+  line-height: 85%;
+  width: 40px;
+  height: 30px;
+  font-size: 350%;
+}

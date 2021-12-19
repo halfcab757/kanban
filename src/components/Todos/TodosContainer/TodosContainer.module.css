@@ -4,13 +4,11 @@
     justify-content: center;
     flex-wrap: nowrap;
     width: 95%;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto 70px auto;
-    /* font-weight: lighter; */
-    /* height: 100%; */
 }
 
-@media (min-width: 700px) {
+@media (min-width: 800px) {
     .container {
         flex-direction: row;
     }

@@ -8,79 +8,95 @@ enum Status {
   'ACHIEVED' = 'ACHIEVED',
 }
 
+// maybe use Union types instead? I cant use Status everywhere
+
 const DUMMY_TODOS = [
-  new Todo('Go to the supermarket', Status.NEW),
-  new Todo('Buy chrismas presents', Status.NEW),
-  new Todo('Finish react course', Status.NEW),
-  new Todo('Call Mom', Status.NEW),
-  // new Todo('Get cash', Status.NEW),
-  // new Todo('Grocery shopping', Status.NEW),
+  new Todo('Take a good look at this web app', Status.NEW, '#ee4fc7'),
+  new Todo('Move these to dos from list to list', Status.NEW, '#c7ee4f'),
+  new Todo('Add your own todo', Status.NEW, '#ee4fc7'),
+  new Todo('Delete some todo', Status.NEW, '#4FC7EE'),
+  new Todo('Read the "About" text', Status.NEW, '#c7ee4f'),
+  new Todo('Check the code on github - link in Navigation', Status.NEW, '#ee4fc7'),
+  new Todo('Contact me via linkedIn - link in "About"', Status.NEW, '#c7ee4f')
 ];
 
 export const TodosContext = React.createContext<{
   items: Todo[];
-  moveItem: (itemId: string, targetList: string) => void;
+  moveItem: (targetList: string) => void;
   addingTodo: boolean;
   deletingTodo: boolean;
+  deletingFinishedTodos: boolean;
   toggleAddTodo: () => void;
   addTodo: (todo: Todo) => void;
   deleteTodo: (id: string) => void;
-  startDeleteHandler: (itemId: string, itemTitle: string) => void;
-  cancelDeleteHandler: () => void;
+  startDeleteHandler: () => void;
   selectedItem: Todo | null;
+  toggleClearingTodos: () => void;
   deleteDoneTodos: () => void;
+  startEditingHandler: (itemId: string) => void;
+  cancelEditingHandler: () => void;
 }>({
   items: [],
-  moveItem: (itemId: string, targetList: string) => {},
+  moveItem: (targetList: string) => {},
   addingTodo: false,
   deletingTodo: false,
+  deletingFinishedTodos: false,
   toggleAddTodo: () => {},
   addTodo: (todo: Todo) => {},
   deleteTodo: (itemId: string) => {},
-  startDeleteHandler: (itemId: string, itemTitle: string) => {},
-  cancelDeleteHandler: () => {},
+  startDeleteHandler: () => {},
   selectedItem: null,
-  deleteDoneTodos: () => {}
+  deleteDoneTodos: () => {},
+  toggleClearingTodos: () => {},
+  startEditingHandler: (itemId: string) => {},
+  cancelEditingHandler: () => {}
 });
-
-// Wo setze ich den eventlistenser? besser für performance wäre die Liste oder gar der container
 
 const TodosContextProvider: React.FC = (props) => {
   const [items, setItems] = useState(DUMMY_TODOS);
   const [addingTodo, setAddingTodo] = useState(false);
   const [deletingTodo, setDeletingTodo] = useState(false);
+  const [isDeletingTodos, setIsDeletingTodos] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Todo | null>(null);
 
   const toggleAddHandler = () => {
     setAddingTodo((prevState) => !prevState);
   };
 
-  const deleteDoneTodos = () => {
-    // confirmation with modal?
-    const updatedItems = items.filter(item => item.status !== 'DONE');
-    setItems(updatedItems);
+  const toggleClearingTodos = () => {
+    console.log('toggle clearing todos');
+    setIsDeletingTodos(prevState => !prevState);
   }
 
-  const startDeleteHandler = (itemId: string) => {
-    // console.log('starting to delete');
-    const selectedItem = items.find(item => item.id === itemId)!;
-    // better use a check before changing state
-    setSelectedItem(selectedItem);
+  const deleteDoneTodos = () => {
+    const updatedItems = items.filter(item => item.status !== 'DONE');
+    setItems(updatedItems);
+    toggleClearingTodos();
+  }
+
+  const startDeleteHandler = () => {
     setDeletingTodo(true);
   }
 
-  const cancelDeleteHandler = () => {
+  const cancelEditingHandler = () => {
     setSelectedItem(null);
-    // better set it to null with union type
     setDeletingTodo(false);
   }
 
-  const moveItem = (itemId: string, newStatus: string) => {
-    const updatedItem = items.find(item => item.id === itemId);
-    updatedItem!.status = newStatus;
-    const outDatedItems = items.filter(item => item.id !== itemId);
-    const updatedItems = [updatedItem!, ...outDatedItems];
+  const startEditingHandler = (itemId: string) => {
+    const selectedItem = items.find(item => item.id === itemId)!;
+    setSelectedItem(selectedItem);
+  }
+
+  const moveItem = (newStatus: string) => {
+    if (!selectedItem) {
+      return;
+    }
+    selectedItem.status = newStatus;
+    const outDatedItems = items.filter(item => item.id !== selectedItem.id);
+    const updatedItems = [selectedItem, ...outDatedItems];
     setItems(updatedItems);
+    setSelectedItem(null);
   };
 
   const addTodo = (newTodo: Todo) => {
@@ -89,7 +105,7 @@ const TodosContextProvider: React.FC = (props) => {
   };
 
   const deleteTodo = (itemId: string) => {
-    console.log('deleting in context');
+    // deletingTodo und editingTodo vielleicht verbinden?
     const updatedItems = items.filter((item) => item.id !== itemId);
     setItems(updatedItems);
     setDeletingTodo(false);
@@ -104,9 +120,12 @@ const TodosContextProvider: React.FC = (props) => {
     addTodo: addTodo,
     deleteTodo: deleteTodo,
     startDeleteHandler: startDeleteHandler,
-    cancelDeleteHandler: cancelDeleteHandler,
     selectedItem: selectedItem,
-    deleteDoneTodos: deleteDoneTodos
+    deleteDoneTodos: deleteDoneTodos,
+    startEditingHandler: startEditingHandler,
+    cancelEditingHandler: cancelEditingHandler,
+    toggleClearingTodos: toggleClearingTodos,
+    deletingFinishedTodos: isDeletingTodos
   };
 
   return (

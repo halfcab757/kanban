@@ -1,23 +1,26 @@
-// import { useContext } from 'react';
-
 import classes from './Navigation.module.css';
 
-// import { TodosContext } from '../../../store/todos-context';
-
-// import Button from '../../UI/Button/Button';
-
-const Navigation: React.FC = () => {
-  // const todosCtx = useContext(TodosContext);
+const Navigation: React.FC<{
+  showHandler: () => void;
+  hideHandler: () => void;
+  shown: boolean;
+}> = (props) => {
+  const homeLinkClasses = `${classes.navigation__link} ${
+    !props.shown && classes['navigation__link--active']
+  }`;
+  const aboutLinkClasses = `${classes.navigation__link} ${
+    props.shown && classes['navigation__link--active']
+  }`;
 
   return (
     <div className={classes.navigation}>
-      <div>
-        <span>GET THINGS DONE</span>
-        {/* <button onClick={todosCtx.toggleAddTodo}>ADD NEW TO DO</button> */}
-        {/* no clean code with the inline style in the next div */}
-        <div>
+      <div className={classes.navigation__links}>
+        <span className={homeLinkClasses} onClick={props.hideHandler}>
+          GET THINGS DONE
+        </span>
+        <span className={aboutLinkClasses} onClick={props.showHandler}>
           ABOUT THIS APP
-        </div>
+        </span>
       </div>
     </div>
   );

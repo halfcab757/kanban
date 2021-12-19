@@ -16,24 +16,25 @@ const Todos: React.FC = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const changeShownList = (listTitle: string) => {
+    let showFreshTodos = false;
+    let showProgressedTodos = false;
+    let showFinishedTodos = false;
+
     if (listTitle === 'TO DO') {
-      setShowFreshTodos(true);
-      setShowProgressedTodos(false);
-      setShowFinishedTodos(false);
+      showFreshTodos = true;
     }
 
     if (listTitle === 'DOING') {
-      console.log('show doing');
-      setShowFreshTodos(false);
-      setShowProgressedTodos(true);
-      setShowFinishedTodos(false);
+      showProgressedTodos = true;
     }
 
     if (listTitle === 'DONE') {
-      setShowFreshTodos(false);
-      setShowProgressedTodos(false);
-      setShowFinishedTodos(true);
+      showFinishedTodos = true;
     }
+
+    setShowFreshTodos(showFreshTodos);
+    setShowProgressedTodos(showProgressedTodos);
+    setShowFinishedTodos(showFinishedTodos);
   };
 
   useEffect(() => {
@@ -41,8 +42,6 @@ const Todos: React.FC = () => {
     const handleResize = () => {
       clearTimeout(timer);
       timer = setTimeout(() => {
-        console.log('actually updating width state');
-        console.log(window.innerWidth);
         setWindowWidth(window.innerWidth);
       }, 100);
     };
@@ -53,7 +52,7 @@ const Todos: React.FC = () => {
 
   useEffect(() => {
     if (
-      windowWidth < 700 &&
+      windowWidth < 800 &&
       showFreshTodos &&
       showProgressedTodos &&
       showFinishedTodos
@@ -63,12 +62,12 @@ const Todos: React.FC = () => {
       setShowFinishedTodos(false);
     }
 
-    if (windowWidth > 700) {
+    if (windowWidth > 800) {
       setShowFreshTodos(true);
       setShowProgressedTodos(true);
       setShowFinishedTodos(true);
     }
-  }, [windowWidth]);
+  }, [windowWidth, showFreshTodos, showProgressedTodos, showFinishedTodos]);
 
   return (
     <Fragment>
@@ -85,7 +84,6 @@ const Todos: React.FC = () => {
       <TodosContainer>
         <TodoList
           title="TO DO"
-          // items={todosCtx.freshTodos}
           items={todosCtx.items}
           showItems={showFreshTodos}
           onShow={changeShownList}

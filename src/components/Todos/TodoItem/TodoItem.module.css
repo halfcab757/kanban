@@ -9,6 +9,7 @@
     box-sizing: border-box;
     min-width: 280px;
     /* trying to animate the item when editing starts */
+    /* when its height changes */
 }
 
 .item:hover {
@@ -16,16 +17,25 @@
     box-shadow: 0px 10px 20px -5px rgba(50, 50, 93, 0.25), 0px 6px 14px -8px rgba(0, 0, 0, 0.3);
 }
 
-.item h3 {
-    margin: 6px;
-    font-weight: lighter;
-    font-size: 16px;
-}
-
 @media (min-width: 700px) {
     .item {
         min-width: 180px;
+        width: 250px;
+        margin: 0 12px;
+        height: 166px;
     }
+}
+
+@media (min-width: 800px) {
+    .item {
+        height: auto;
+    }
+}
+
+.item__title {
+    margin: 6px;
+    font-weight: lighter;
+    font-size: 16px;
 }
 
 .actions {
@@ -33,7 +43,7 @@
     flex-direction: row;
     /* flex-wrap: wrap; */
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     /* width: 200px; */
     margin: 0 auto;
     width: 220px;
@@ -44,36 +54,73 @@
     flex-direction: row;
     /* flex-wrap: wrap; */
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
     /* width: 200px; */
     margin: 0 auto;
     max-width: 300px;
     width: 225px;
 }
 
-@media (max-width: 800px) {
+@media (min-width: 800px) {
     .actions {
         display: flex;
         flex-direction: column;
+        width: auto;
+        align-items: center;
     }
 
-    /* .actions button { */
-        /* width: 50%;
-        min-width: 85px; */
-    /* } */
+    .editactions {
+        flex-direction: column;
+        /* width: 160px; */
+        width: auto;
+        align-items: center;
+    }
+
+    .editactions button {
+        width: 160px;
+    }
+
+    .item {
+        width: 180px
+    }
 }
 
-/* I wanna keep the opacity animation */
+@media (min-width: 1000px) {
+    .actions {
+        display: flex;
+        flex-direction: row;
+        /* flex-wrap: wrap; */
+        justify-content: center;
+        /* align-items: center; */
+        /* width: 200px; */
+        margin: 0 auto;
+        width: 220px;
+    }
+
+    .editactions {
+        display: flex;
+        flex-direction: row;
+        /* flex-wrap: wrap; */
+        justify-content: space-between;
+        /* align-items: center; */
+        /* width: 200px; */
+        margin: 0 auto;
+        max-width: 300px;
+        width: 225px;
+    }
+
+    .item {
+        width: 250px;
+    }
+}
+
+/* opacity animation when tip gets shown/hidden */
 
 .tip {
     font-size: 10px;
     opacity: 0;
     transition: opacity 0.5s ease-out;
 }
-
-/* .actions button:hover + .tip {
-    opacity: 1;
-} */
 
 @media (max-width: 500px) {
     .tip {
