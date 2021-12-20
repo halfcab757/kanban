@@ -4,6 +4,7 @@ import classes from './TodoList.module.css';
 import Todo from '../../../models/todo';
 
 import TodoItem from '../TodoItem/TodoItem';
+// import DeleteConfirmation from '../DeleteConfirmation/DeleteConfirmation';
 import Button from '../../UI/Button/Button';
 import { TodosContext } from '../../../store/todos-context';
 
@@ -38,6 +39,18 @@ const TodoList: React.FC<{
     items = props.items.filter((item) => item.status === 'DONE');
   }
 
+  const clearFinsishedTodosElement = (
+    <div className={classes.actions}>
+      <Button
+        type="button"
+        action="CLEAR-LIST"
+        tipText="DELETE ALL DONE TO DOS"
+        // clickHandler={todosCtx.toggleClearingTodos}
+        clickHandler={todosCtx.updatingTodosHandler.bind(null, 'CLEAR')}
+      />
+    </div>
+  );
+
   let itemsList = (
     <Fragment>
       <ul className={classes.todolist__list}>
@@ -53,20 +66,6 @@ const TodoList: React.FC<{
             </li>
           ))}
       </ul>
-      {/* {items.length === 0 && (
-        <p className={classes.notodos}>NO TO DOS IN THIS LIST</p>
-      )} */}
-      {props.title === 'DONE' && items.length > 0 && (
-        <div className={classes.actions}>
-          <Button
-            type="button"
-            action="CLEAR-LIST"
-            tipText="DELETE ALL DONE TO DOS"
-            // clickHandler={todosCtx.deleteDoneTodos}
-            clickHandler={todosCtx.toggleClearingTodos}
-          />
-        </div>
-      )}
     </Fragment>
   );
 
@@ -102,7 +101,7 @@ const TodoList: React.FC<{
         type="submit"
         action="CONFIRM"
         tipText="ADD TODO"
-        clickHandler={todosCtx.toggleAddTodo}
+        clickHandler={todosCtx.updatingTodosHandler.bind(null, 'ADD')}
       >
         ADD
       </Button>
@@ -120,7 +119,9 @@ const TodoList: React.FC<{
     );
   }
 
-  const listCssClasses = `${classes.scrollable} ${(!props.showItems || items.length === 0) && classes.notvisible}`;
+  const listCssClasses = `${classes.scrollable} ${
+    (!props.showItems || items.length === 0) && classes.notvisible
+  }`;
 
   return (
     <div className={classes.todolist}>
@@ -139,9 +140,12 @@ const TodoList: React.FC<{
         {/* maybe find a solution with whole list scolling */}
         {props.showItems && items.length > 0 && itemsList}
       </div>
-      {(props.showItems && endOfList < items.length) && showMoreButton}
-      {(props.showItems && endOfList > 3) && ShowLessButton}
-      {(props.showItems && items.length === 0) && itemListPlaceholder}
+
+      {props.title === 'DONE' && items.length > 0 && clearFinsishedTodosElement}
+      {props.showItems && endOfList < items.length && showMoreButton}
+      {props.showItems && endOfList > 3 && ShowLessButton}
+      {props.showItems && items.length === 0 && itemListPlaceholder}
+      {/* {isClearingTodos && <DeleteConfirmation type='clear-items'/>} */}
     </div>
   );
 };

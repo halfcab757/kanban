@@ -76,7 +76,8 @@ const Todos: React.FC = () => {
           type="button"
           action="START-TO-ADD"
           tipText="ADD TODO"
-          clickHandler={todosCtx.toggleAddTodo}
+          // clickHandler={todosCtx.toggleAddTodo}
+          clickHandler={todosCtx.updatingTodosHandler.bind(null, 'ADD')}
         >
           ADD
         </Button>

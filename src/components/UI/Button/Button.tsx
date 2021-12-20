@@ -118,7 +118,8 @@ const Button: React.FC<{
   if (
     props.action === 'MORE' ||
     props.action === 'LESS' ||
-    props.action === 'START-TO-ADD'
+    props.action === 'START-TO-ADD' ||
+    props.action === 'CLEAR-LIST'
   ) {
     tipCssClasses = `${classes.tip} ${classes.bigtip}`;
   }

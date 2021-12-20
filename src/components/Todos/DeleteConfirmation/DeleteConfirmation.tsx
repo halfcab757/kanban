@@ -24,16 +24,18 @@ const DeleteConfirmation: React.FC<{ type: 'single-item' | 'clear-items' }> = (
             tipText="YES, DELETE IT"
             type="button"
             action="CONFIRM"
-            clickHandler={todosCtx.deleteTodo.bind(
-              null,
-              todosCtx.selectedItem!.id
-            )}
+            // clickHandler={todosCtx.deleteTodo.bind(
+            //   null,
+            //   todosCtx.selectedItem!.id
+            // )}
+            clickHandler={todosCtx.updateTodosHandler.bind(null, 'DELETE', null, null)}
           />
           <Button
             tipText="NO, I WILL KEEP IT"
             action="CANCEL-FORM"
             type="button"
-            clickHandler={todosCtx.cancelEditingHandler}
+            // clickHandler={todosCtx.cancelEditingHandler}
+            clickHandler={todosCtx.updatingTodosHandler.bind(null, null)}
           />
         </div>
       </Fragment>
@@ -49,13 +51,15 @@ const DeleteConfirmation: React.FC<{ type: 'single-item' | 'clear-items' }> = (
             tipText="YES, DELETE THEM"
             type="button"
             action="CONFIRM"
-            clickHandler={todosCtx.deleteDoneTodos}
+            // clickHandler={todosCtx.deleteDoneTodos}
+            clickHandler={todosCtx.updateTodosHandler.bind(null, 'CLEAR', null, null)}
           />
           <Button
             tipText="NO, I WILL KEEP THEM"
             action="CANCEL-FORM"
             type="button"
-            clickHandler={todosCtx.toggleClearingTodos}
+            // clickHandler={todosCtx.toggleClearingTodos}
+            clickHandler={todosCtx.updatingTodosHandler.bind(null, null)}
           />
         </div>
       </Fragment>

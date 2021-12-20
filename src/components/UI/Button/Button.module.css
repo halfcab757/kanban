@@ -12,6 +12,7 @@
   margin: 4px;
   background: #4f78ee;
   background: transparent;
+  /* zwei backgrounds? */
   border: 2px solid black;
 }
 
@@ -158,6 +159,10 @@
 
   .bigtip {
     left: 26px;
+  }
+
+  .biggertip {
+    left: -3px;
   }
 }
 

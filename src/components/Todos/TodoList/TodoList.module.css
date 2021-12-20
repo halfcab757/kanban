@@ -162,6 +162,7 @@
     overflow-x: hidden;
     height: 400px;
     transition: height 1s ease-out;
+    padding-bottom: 20px;
 }
 
 .notvisible {

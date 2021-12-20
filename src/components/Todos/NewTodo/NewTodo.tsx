@@ -56,9 +56,12 @@ const NewTodo: React.FC = () => {
       return;
     }
     const newTodo = new Todo(todoInputText, 'NEW', formAndItemBackground);
-    todosCtx.addTodo(newTodo);
+    // todosCtx.addTodo(newTodo);
+    todosCtx.updateTodosHandler('ADD', newTodo, null);
     // clear form OR better close form, maybe show a green mark for a short time
     todoInputRef.current!.value = '';
+    console.log('resetting updatingTodos');
+    todosCtx.updatingTodosHandler(null);
   };
 
   let inputCssClasses = `${classes.input} ${hasError && classes.invalid}`;
@@ -72,7 +75,7 @@ const NewTodo: React.FC = () => {
   );
 
   return (
-    <Modal onClose={todosCtx.toggleAddTodo} background={formAndItemBackground}>
+    <Modal onClose={todosCtx.updatingTodosHandler.bind(null, null)} background={formAndItemBackground}>
         <form className={classes.form} onSubmit={submitHandler}>
           <div className={classes.controls}>
             <label htmlFor="text">LET'S ADD A NEW TODO</label>
@@ -100,7 +103,8 @@ const NewTodo: React.FC = () => {
               type="button"
               action='CANCEL-FORM'
               tipText="CANCEL ADDING"
-              clickHandler={todosCtx.toggleAddTodo}
+              // clickHandler={todosCtx.toggleAddTodo}
+              clickHandler={todosCtx.updatingTodosHandler.bind(null, null)}
             >
               Cancel
             </Button>
