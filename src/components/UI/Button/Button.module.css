@@ -7,74 +7,77 @@
   border-radius: 6px;
   color: black;
   width: 220px;
-
   height: 44px;
   margin: 4px;
-  background: #4f78ee;
   background: transparent;
-  /* zwei backgrounds? */
   border: 2px solid black;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 850px) {
   .button {
     width: 160px;
   }
 }
 
-@media (min-width: 1000px) {
-  .button {
-    width: 220px;
-  }
-}
-
-.edit {
-  width: 66px;
-}
-
-.button:hover {
-  color: white;
-  border: 2px solid black;
-  cursor: pointer;
-}
-
-.big {
-  width: 120px;
-  /* margin: 0; */
-}
-
-.big:hover {
-  background: #4fc7ee;
-}
-
-@media (min-width: 700px) {
-  .big {
-    width: 160px;
-  }
-}
-
-.bigBtn:hover {
-  background: #4fc7ee;
-}
-
-.hugebtn {
+.addbtn {
+  margin: 16px auto 0 auto;
   width: 220px;
 }
 
-@media (min-width: 800px) {
-  .hugebtn {
+.formbtn {
+  width: 120px;
+  margin: 0 auto;
+}
+
+.formbtn:hover {
+  background: #4fc7ee;
+}
+
+.welcomebtn {
+  width: 90%;
+  margin: 0 auto;
+}
+
+@media (min-width: 700px) {
+  .formbtn {
+    width: 160px;
+  }
+}
+
+.listbtn {
+  width: 220px;
+}
+
+@media (min-width: 850px) {
+  .listbtn {
     width: 160px;
   }
 }
 
 @media (min-width: 1000px) {
-  .hugebtn {
-    width: 220px;
+  .listbtn {
+    width: 200px;
   }
 }
 
-.hugebtn:hover {
-  background: #4fc7ee;
+@media (hover: hover) {
+  .button:hover {
+    color: white;
+    border: 2px solid black;
+    cursor: pointer;
+  }
+
+  .addbtn:hover {
+    background: #4fc7ee;
+  }
+
+  .listbtn:hover {
+    background: #4fc7ee;
+  }
+
+  .welcomebtn:hover {
+    background: #4fc7ee;
+  }
 }
 
 .container {
@@ -88,12 +91,13 @@
 }
 
 .tip {
+  display: none;
   color: black;
   background: #f7f9fe;
   position: absolute;
   top: 54px;
   left: -48px;
-  width: 160px;
+  width: 140px;
   padding: 6px;
   z-index: 10;
   margin: 0px 0px;
@@ -105,7 +109,7 @@
 .tip-arrow-border {
   position: absolute;
   top: -9px;
-  left: 70px;
+  left: 60px;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-bottom: 10px solid black;
@@ -124,56 +128,72 @@
   height: 0;
 }
 
-.edittip {
-  left: 22px;
-}
-
-.bigtip {
-  left: 26px;
-}
-
-.biggertip {
-  left: -23px;
-}
-
-@media (min-width: 700px) {
-  .biggertip {
-    left: -3px;
+@media (hover: hover) {
+  .button:hover > .tip {
+    display: block;
   }
 }
 
-@media (min-width: 800px) {
-  .tip {
-    left: -2px;
+.selecttip {
+  left: 34px;
+}
+
+.edittip {
+  left: 34px;
+}
+
+.addtip {
+  left: 36px;
+}
+
+.showtip {
+  left: 36px;
+}
+
+.formtip {
+  left: -13px;
+}
+
+@media (min-width: 450px) {
+  .edittip {
+    left: -40px;
+  }
+}
+
+@media (min-width: 700px) {
+  .formtip {
+    left: 6px;
+  }
+}
+
+@media (min-width: 850px) {
+  .selecttip {
+    left: 8px;
+  }
+
+  .edittip {
+    left: 8px;
+  }
+
+  .showtip {
+    left: 7px;
   }
 }
 
 @media (min-width: 1000px) {
-  .tip {
-    left: -48px;
+  .selecttip {
+    left: 28px;
   }
 
   .edittip {
-    left: 22px;
+    left: 28px;
   }
 
-  .bigtip {
-    left: 26px;
-  }
-
-  .biggertip {
-    left: -3px;
+  .showtip {
+    left: 28px;
   }
 }
 
 .hidden {
   display: none;
-}
-
-.addBtn {
-  margin: 16px auto 0 auto;
-}
-
-.addBtn:hover {
-  background: #4fc7ee;
 }

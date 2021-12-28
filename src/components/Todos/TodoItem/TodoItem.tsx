@@ -1,11 +1,10 @@
 import { useContext } from 'react';
 
+import Button from '../../UI/Button/Button';
+
 import { TodosContext } from '../../../store/todos-context';
 
 import classes from './TodoItem.module.css';
-import Button from '../../UI/Button/Button';
-
-
 
 const TodoItem: React.FC<{ title: string; status: string; id: string, color: string }> = (
   props
@@ -13,30 +12,23 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
   const todosCtx = useContext(TodosContext);
 
   let editActions = (
-    <div className={classes.editactions}>
+    <div className={classes.actionsedit}>
       <Button
-        tipText="MOVE TO DOING"
+        tipText="MOVE TO 'DOING'"
         type="button"
         action="FORWARDS-TO-DOING"
-        // clickHandler={todosCtx.moveItem.bind(null, 'DOING')
         clickHandler={todosCtx.updateTodosHandler.bind(null, 'EDIT', null, 'DOING')}
       />
       <Button
-        tipText="MOVE TO DONE"
+        tipText="MOVE TO 'DONE'"
         action="FORWARDS-TO-DONE"
         type="button"
-        // clickHandler={todosCtx.moveItem.bind(null, 'DONE')}
         clickHandler={todosCtx.updateTodosHandler.bind(null, 'EDIT', null, 'DONE')}
       />
       <Button
-        tipText="DELETE THIS TO DO"
+        tipText="DELETE TODO"
         type="button"
         action="DELETE"
-        // clickHandler={todosCtx.startDeleteHandler.bind(
-        //   null,
-        //   props.id,
-        //   props.title
-        // )}
         clickHandler={todosCtx.updatingTodosHandler.bind(
           null,
           'DELETE'
@@ -47,23 +39,21 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
 
   if (props.status === 'DOING') {
     editActions = (
-      <div className={classes.editactions}>
+      <div className={classes.actionsedit}>
         <Button
-          tipText="MOVE BACK TO TO DO"
+          tipText="MOVE TO 'TODO'"
           type="button"
           action='ONE-STEP-BACKWARDS-TO-NEW'
-          // clickHandler={todosCtx.moveItem.bind(null, 'NEW')}
           clickHandler={todosCtx.updateTodosHandler.bind(null, 'EDIT', null, 'NEW')}
         />
         <Button
-          tipText="MOVE TO DONE"
+          tipText="MOVE TO 'DONE'"
           type="button"
           action="FORWARDS-TO-DONE"
-          // clickHandler={todosCtx.moveItem.bind(null, 'DONE')}
           clickHandler={todosCtx.updateTodosHandler.bind(null, 'EDIT', null, 'DONE')}
         />
         <Button
-          tipText="DELETE TO DO"
+          tipText="DELETE TODO"
           type="button"
           action="DELETE"
           clickHandler={todosCtx.updatingTodosHandler.bind(
@@ -77,26 +67,23 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
 
   if (props.status === 'DONE') {
     editActions = (
-      <div className={classes.editactions}>
+      <div className={classes.actionsedit}>
         <Button
-          tipText="MOVE BACK TO DOING"
+          tipText="MOVE TO 'DOING'"
           type="button"
           action="BACKWARDS-TO-DOING"
-          // clickHandler={todosCtx.moveItem.bind(null, 'DOING')}
           clickHandler={todosCtx.updateTodosHandler.bind(null, 'EDIT', null, 'DOING')}
         />
         <Button
-          tipText="MOVE BACK TO TO DO"
+          tipText="MOVE TO 'TO DO'"
           action='TWO-STEPS-BACKWARDS-TO-NEW'
           type="button"
-          // clickHandler={todosCtx.moveItem.bind(null, 'NEW')}
           clickHandler={todosCtx.updateTodosHandler.bind(null, 'EDIT', null, 'NEW')}
         />
         <Button
-          tipText="DELETE TO DO"
+          tipText="DELETE TODO"
           action="DELETE"
           type="button"
-          // clickHandler={todosCtx.startDeleteHandler}
           clickHandler={todosCtx.updatingTodosHandler.bind(null, 'DELETE')}
         />
       </div>
@@ -109,7 +96,7 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
         {(!todosCtx.selectedItem || todosCtx.selectedItem.id !== props.id) && (
           <div className={classes.actions}>
             <Button
-              tipText="EDIT THIS TO DO"
+              tipText="EDIT TODO"
               type="button"
               action="EDIT"
               clickHandler={todosCtx.startEditingHandler.bind(null, props.id)}

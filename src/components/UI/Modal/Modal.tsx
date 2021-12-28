@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 
-import classes from './Modal.module.css';
-
 import Backdrop from '../Backdrop/Backdrop';
+
+import classes from './Modal.module.css';
 
 const Modal: React.FC<{onClose: () => void; background: string}> = (props) => {
   return (

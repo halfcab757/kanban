@@ -16,10 +16,10 @@ const Navigation: React.FC<{
     <div className={classes.navigation}>
       <div className={classes.navigation__links}>
         <span className={homeLinkClasses} onClick={props.hideHandler}>
-          GET THINGS DONE
+          KANBAN
         </span>
         <span className={aboutLinkClasses} onClick={props.showHandler}>
-          ABOUT THIS APP
+          ABOUT
         </span>
       </div>
     </div>

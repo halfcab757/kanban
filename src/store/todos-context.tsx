@@ -8,8 +8,6 @@ enum Status {
   // 'ACHIEVED' = 'ACHIEVED',
 }
 
-// In a real app, I would have built a REST API, set up some login logic and fetch the user's to-dos from that REST API
-// AS I focused on the UI, I have skipped these steps and simply work with the following dummy data
 const DUMMY_TODOS = [
   new Todo('Take a good look at this web app', Status.NEW, '#ee4fc7'),
   new Todo('Move these to dos from list to list', Status.NEW, '#c7ee4f'),
@@ -22,6 +20,10 @@ const DUMMY_TODOS = [
     '#ee4fc7'
   ),
   new Todo('Contact me via linkedIn - link in "About"', Status.NEW, '#c7ee4f'),
+  new Todo('Move these to dos from list to list', Status.NEW, '#c7ee4f'),
+  new Todo('Add your own todo', Status.NEW, '#ee4fc7'),
+  new Todo('Delete some todo', Status.NEW, '#4FC7EE'),
+  new Todo('Read the "About" text', Status.NEW, '#c7ee4f'),
 ];
 
 // startEditing und cancelEditing verbinden
@@ -62,8 +64,6 @@ const TodosContextProvider: React.FC = (props) => {
     'ADD' | 'DELETE' | 'EDIT' | 'CLEAR' | null
   >(null);
 
-  // store options in a type or enum
-  // rename this first handler
   const updatingTodosHandler = (
     action: 'ADD' | 'DELETE' | 'EDIT' | 'CLEAR' | null
   ) => {
@@ -117,6 +117,7 @@ const TodosContextProvider: React.FC = (props) => {
   };
 
   const cancelEditingHandler = () => {
+    console.log('canceling editing');
     setSelectedItem(null);
   };
 

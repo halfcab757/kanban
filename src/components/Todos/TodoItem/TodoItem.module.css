@@ -7,14 +7,19 @@
     background: #4feec6;
     text-align: center;
     box-sizing: border-box;
-    min-width: 280px;
-    /* trying to animate the item when editing starts */
-    /* when its height changes */
+    width: 250px;
+    overflow: visible;
 }
 
 .item:hover {
     background: #4feec6;
     box-shadow: 0px 10px 20px -5px rgba(50, 50, 93, 0.25), 0px 6px 14px -8px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 450px) {
+    .item {
+        width: 300px;
+    }
 }
 
 @media (min-width: 700px) {
@@ -26,7 +31,7 @@
     }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 850px) {
     .item {
         height: auto;
     }
@@ -41,27 +46,26 @@
 .actions {
     display: flex;
     flex-direction: row;
-    /* flex-wrap: wrap; */
     justify-content: center;
-    /* align-items: center; */
-    /* width: 200px; */
     margin: 0 auto;
-    width: 220px;
 }
 
-.editactions {
+.actionsedit {
     display: flex;
-    flex-direction: row;
-    /* flex-wrap: wrap; */
+    flex-direction: column;
     justify-content: space-between;
-    /* align-items: center; */
-    /* width: 200px; */
     margin: 0 auto;
     max-width: 300px;
     width: 225px;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 450px) {
+    .actionsedit {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 850px) {
     .actions {
         display: flex;
         flex-direction: column;
@@ -69,14 +73,13 @@
         align-items: center;
     }
 
-    .editactions {
+    .actionsedit {
         flex-direction: column;
-        /* width: 160px; */
         width: auto;
         align-items: center;
     }
 
-    .editactions button {
+    .actionsedit button {
         width: 160px;
     }
 
@@ -86,35 +89,33 @@
 }
 
 @media (min-width: 1000px) {
-    .actions {
-        display: flex;
-        flex-direction: row;
-        /* flex-wrap: wrap; */
-        justify-content: center;
-        /* align-items: center; */
-        /* width: 200px; */
-        margin: 0 auto;
+
+    .item {
         width: 220px;
     }
 
-    .editactions {
+    .actions {
         display: flex;
-        flex-direction: row;
-        /* flex-wrap: wrap; */
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 auto;
+        width: 200px;
+    }
+
+    .actionsedit {
+        display: flex;
+        flex-direction: column;
         justify-content: space-between;
-        /* align-items: center; */
-        /* width: 200px; */
         margin: 0 auto;
         max-width: 300px;
-        width: 225px;
+        width: 200px;
     }
 
-    .item {
-        width: 250px;
+    .actions button,
+    .actionsedit button {
+        width: 200px;
     }
 }
-
-/* opacity animation when tip gets shown/hidden */
 
 .tip {
     font-size: 10px;

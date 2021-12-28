@@ -6,8 +6,6 @@ import Button from '../UI/Button/Button';
 
 import { TodosContext } from '../../store/todos-context';
 
-import classes from './Todos.module.css';
-
 const Todos: React.FC = () => {
   const todosCtx = useContext(TodosContext);
   const [showFreshTodos, setShowFreshTodos] = useState(true);
@@ -52,7 +50,7 @@ const Todos: React.FC = () => {
 
   useEffect(() => {
     if (
-      windowWidth < 800 &&
+      windowWidth < 850 &&
       showFreshTodos &&
       showProgressedTodos &&
       showFinishedTodos
@@ -62,7 +60,7 @@ const Todos: React.FC = () => {
       setShowFinishedTodos(false);
     }
 
-    if (windowWidth > 800) {
+    if (windowWidth > 850) {
       setShowFreshTodos(true);
       setShowProgressedTodos(true);
       setShowFinishedTodos(true);
@@ -71,17 +69,14 @@ const Todos: React.FC = () => {
 
   return (
     <Fragment>
-      <div className={classes.buttoncontainer}>
         <Button
           type="button"
           action="START-TO-ADD"
-          tipText="ADD TODO"
-          // clickHandler={todosCtx.toggleAddTodo}
+          tipText="ADD NEW TODO"
           clickHandler={todosCtx.updatingTodosHandler.bind(null, 'ADD')}
         >
           ADD
         </Button>
-      </div>
       <TodosContainer>
         <TodoList
           title="TO DO"

@@ -1,29 +1,12 @@
 .welcome {
   display: block;
+  padding: 0 12px;
 }
 
-.welcome__title {
+.welcome h2 {
   text-align: center;
 }
 
-.welcome__content {
+.welcome p {
   text-align: left;
-}
-
-.welcome__button {
-  display: block;
-  border: 1px solid rgba(10, 78, 100, 0.8);
-  border-radius: 6px;
-  color: black;
-  width: 220px;
-  height: 44px;
-  background: #4f78ee;
-  border: 2px solid black;
-  margin: 4px auto;
-}
-
-.welcome__button:hover {
-  color: white;
-  border: 2px solid black;
-  cursor: pointer;
 }

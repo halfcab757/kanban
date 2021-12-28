@@ -1,5 +1,10 @@
 .navigation {
     background: #4f78ee;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    z-index: 10;
 }
 
 .navigation__links {

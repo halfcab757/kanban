@@ -1,12 +1,12 @@
 import { useState, Fragment, useContext } from 'react';
 
-import classes from './TodoList.module.css';
+import TodoItem from '../TodoItem/TodoItem';
+import Button from '../../UI/Button/Button';
 import Todo from '../../../models/todo';
 
-import TodoItem from '../TodoItem/TodoItem';
-// import DeleteConfirmation from '../DeleteConfirmation/DeleteConfirmation';
-import Button from '../../UI/Button/Button';
 import { TodosContext } from '../../../store/todos-context';
+
+import classes from './TodoList.module.css';
 
 const TodoList: React.FC<{
   title: string;
@@ -40,12 +40,11 @@ const TodoList: React.FC<{
   }
 
   const clearFinsishedTodosElement = (
-    <div className={classes.actions}>
+    <div className={[classes.actions, classes.clear].join(' ')}>
       <Button
         type="button"
         action="CLEAR-LIST"
-        tipText="DELETE ALL DONE TO DOS"
-        // clickHandler={todosCtx.toggleClearingTodos}
+        tipText="CLEAR LIST"
         clickHandler={todosCtx.updatingTodosHandler.bind(null, 'CLEAR')}
       />
     </div>
@@ -74,7 +73,7 @@ const TodoList: React.FC<{
       <Button
         type="button"
         action="MORE"
-        tipText="SHOW MORE TO DOS"
+        tipText="SHOW MORE"
         clickHandler={showMoreItemsHandler}
       />
     </div>
@@ -85,7 +84,7 @@ const TodoList: React.FC<{
       <Button
         type="button"
         action="LESS"
-        tipText="SHOW FEWER TO DOS"
+        tipText="SHOW LESS"
         clickHandler={showLessItemsHandler}
       />
     </div>
@@ -137,15 +136,13 @@ const TodoList: React.FC<{
         </div>
       )}
       <div className={listCssClasses}>
-        {/* maybe find a solution with whole list scolling */}
         {props.showItems && items.length > 0 && itemsList}
       </div>
 
-      {props.title === 'DONE' && items.length > 0 && clearFinsishedTodosElement}
+      {props.showItems && props.title === 'DONE' && items.length > 0 && clearFinsishedTodosElement}
       {props.showItems && endOfList < items.length && showMoreButton}
       {props.showItems && endOfList > 3 && ShowLessButton}
       {props.showItems && items.length === 0 && itemListPlaceholder}
-      {/* {isClearingTodos && <DeleteConfirmation type='clear-items'/>} */}
     </div>
   );
 };
