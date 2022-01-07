@@ -4,7 +4,7 @@
     left: 0;
     top: 0;
     width: 100vw;
-    z-index: 10;
+    z-index: 1;
 }
 
 .navigation__links {
@@ -22,9 +22,11 @@
     padding-bottom: 4px;
 }
 
-.navigation__link:hover {
-    border-bottom: 2px solid white;
-    color: white;
+@media (hover: hover) {
+    .navigation__link:hover {
+        border-bottom: 2px solid white;
+        color: white;
+    }
 }
 
 .navigation__link--active {

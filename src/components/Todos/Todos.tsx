@@ -21,7 +21,7 @@ const Todos: React.FC = () => {
     if (listTitle === 'TO DO') {
       showFreshTodos = true;
     }
-
+    
     if (listTitle === 'DOING') {
       showProgressedTodos = true;
     }

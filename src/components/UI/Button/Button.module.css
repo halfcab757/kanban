@@ -13,49 +13,43 @@
   border: 2px solid black;
 }
 
-@media (min-width: 850px) {
-  .button {
-    width: 160px;
-  }
-}
-
-.addbtn {
+.add-btn {
   margin: 16px auto 0 auto;
   width: 220px;
 }
 
-.formbtn {
+.form-btn {
   width: 120px;
   margin: 0 auto;
 }
 
-.formbtn:hover {
-  background: #4fc7ee;
-}
-
-.welcomebtn {
+.welcome-btn {
   width: 90%;
   margin: 0 auto;
 }
 
+.list-btn {
+  width: 220px;
+}
+
 @media (min-width: 700px) {
-  .formbtn {
+  .form-btn {
     width: 160px;
   }
 }
 
-.listbtn {
-  width: 220px;
-}
-
 @media (min-width: 850px) {
-  .listbtn {
+  .button {
     width: 160px;
+  }
+
+  .add-btn {
+    width: 220px;
   }
 }
 
 @media (min-width: 1000px) {
-  .listbtn {
+  .list-btn {
     width: 200px;
   }
 }
@@ -67,15 +61,19 @@
     cursor: pointer;
   }
 
-  .addbtn:hover {
+  .add-btn:hover {
     background: #4fc7ee;
   }
 
-  .listbtn:hover {
+  .list-btn:hover {
     background: #4fc7ee;
   }
 
-  .welcomebtn:hover {
+  .welcome-btn:hover {
+    background: #4fc7ee;
+  }
+
+  .form-btn:hover {
     background: #4fc7ee;
   }
 }
@@ -134,66 +132,54 @@
   }
 }
 
-.selecttip {
+.select-tip {
   left: 34px;
 }
 
-.edittip {
+.edit-tip {
   left: 34px;
 }
 
-.addtip {
+.add-tip {
   left: 36px;
 }
 
-.showtip {
+.show-tip {
   left: 36px;
 }
 
-.formtip {
+.form-tip {
   left: -13px;
 }
 
 @media (min-width: 450px) {
-  .edittip {
+  .edit-tip {
     left: -40px;
   }
 }
 
 @media (min-width: 700px) {
-  .formtip {
+  .form-tip {
     left: 6px;
   }
 }
 
 @media (min-width: 850px) {
-  .selecttip {
+  .select-tip {
     left: 8px;
   }
 
-  .edittip {
+  .edit-tip {
     left: 8px;
   }
 
-  .showtip {
+  .show-tip {
     left: 7px;
   }
 }
 
 @media (min-width: 1000px) {
-  .selecttip {
+  .show-tip {
     left: 28px;
   }
-
-  .edittip {
-    left: 28px;
-  }
-
-  .showtip {
-    left: 28px;
-  }
-}
-
-.hidden {
-  display: none;
 }

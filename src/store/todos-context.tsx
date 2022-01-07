@@ -3,30 +3,22 @@ import Todo from '../models/todo';
 
 enum Status {
   'NEW' = 'NEW',
-  'PROGRESS' = 'PROGRESS',
-  'DONE' = 'DONE',
-  // 'ACHIEVED' = 'ACHIEVED',
+  'DOING' = 'DOING',
+  'DONE' = 'DONE'
 }
 
 const DUMMY_TODOS = [
-  new Todo('Take a good look at this web app', Status.NEW, '#ee4fc7'),
-  new Todo('Move these to dos from list to list', Status.NEW, '#c7ee4f'),
-  new Todo('Add your own todo', Status.NEW, '#ee4fc7'),
-  new Todo('Delete some todo', Status.NEW, '#4FC7EE'),
-  new Todo('Read the "About" text', Status.NEW, '#c7ee4f'),
-  new Todo(
-    'Check the code on github - link in Navigation',
-    Status.NEW,
-    '#ee4fc7'
-  ),
-  new Todo('Contact me via linkedIn - link in "About"', Status.NEW, '#c7ee4f'),
-  new Todo('Move these to dos from list to list', Status.NEW, '#c7ee4f'),
-  new Todo('Add your own todo', Status.NEW, '#ee4fc7'),
-  new Todo('Delete some todo', Status.NEW, '#4FC7EE'),
-  new Todo('Read the "About" text', Status.NEW, '#c7ee4f'),
+  new Todo('Move TODOs from list to list', Status.NEW, '#c7ee4f'),
+  new Todo('Add and delete a TODO', Status.NEW, '#ee4fc7'),
+  new Todo('Read the "About" section', Status.NEW, '#c7ee4f'),
+  // new Todo(
+  //   'Check the code on github - link in "About" section',
+  //   Status.NEW,
+  //   '#ee4fc7'
+  // ),
+  new Todo('Contact me on LinkedIn - link in "About" section', Status.NEW, '#c7ee4f')
 ];
 
-// startEditing und cancelEditing verbinden
 export const TodosContext = React.createContext<{
   items: Todo[];
   selectedItem: Todo | null;
@@ -82,18 +74,15 @@ const TodosContextProvider: React.FC = (props) => {
     let updatedItems: Todo[] = [];
     switch (action) {
       case 'ADD':
-        console.log('adding in updateTodosHandler');
         if (newTodo) {
           setItems((prevItems) => [newTodo, ...prevItems]);
         }
         break;
       case 'DELETE':
-        console.log('delete in updateTodosHandler');
         updatedItems = items.filter((item) => item.id !== selectedItem!.id);
         setItems(updatedItems);
         break;
       case 'CLEAR':
-        console.log('clear in updateTodosHandler');
         updatedItems = items.filter((item) => item.status !== 'DONE');
         setItems(updatedItems);
         break;
@@ -117,7 +106,6 @@ const TodosContextProvider: React.FC = (props) => {
   };
 
   const cancelEditingHandler = () => {
-    console.log('canceling editing');
     setSelectedItem(null);
   };
 

@@ -11,9 +11,11 @@
     overflow: visible;
 }
 
-.item:hover {
-    background: #4feec6;
-    box-shadow: 0px 10px 20px -5px rgba(50, 50, 93, 0.25), 0px 6px 14px -8px rgba(0, 0, 0, 0.3);
+@media (hover: hover) {
+    .item:hover {
+        background: #4feec6;
+        box-shadow: 0px 10px 20px -5px rgba(50, 50, 93, 0.25), 0px 6px 14px -8px rgba(0, 0, 0, 0.3);
+    }
 }
 
 @media (min-width: 450px) {
@@ -50,37 +52,30 @@
     margin: 0 auto;
 }
 
-.actionsedit {
-    display: flex;
+.actions-edit {
     flex-direction: column;
     justify-content: space-between;
-    margin: 0 auto;
     max-width: 300px;
     width: 225px;
 }
 
 @media (min-width: 450px) {
-    .actionsedit {
+    .actions-edit {
         flex-direction: row;
     }
 }
 
 @media (min-width: 850px) {
     .actions {
-        display: flex;
         flex-direction: column;
         width: auto;
         align-items: center;
     }
 
-    .actionsedit {
+    .actions-edit {
         flex-direction: column;
         width: auto;
         align-items: center;
-    }
-
-    .actionsedit button {
-        width: 160px;
     }
 
     .item {
@@ -89,30 +84,19 @@
 }
 
 @media (min-width: 1000px) {
-
     .item {
         width: 220px;
     }
 
     .actions {
-        display: flex;
         flex-direction: column;
         justify-content: center;
-        margin: 0 auto;
         width: 200px;
     }
 
-    .actionsedit {
-        display: flex;
+    .actions-edit {
         flex-direction: column;
         justify-content: space-between;
-        margin: 0 auto;
-        max-width: 300px;
-        width: 200px;
-    }
-
-    .actions button,
-    .actionsedit button {
         width: 200px;
     }
 }
@@ -129,10 +113,13 @@
     }
 }
 
-.tip:hover {
-    opacity: 1;
+@media (hover: hover) {
+    /* .tip:hover {
+        opacity: 1;
+    } */
+
+    .actions button:hover + .tip {
+        opacity: 1;
+    }
 }
 
-.actions button:hover + .tip {
-    opacity: 1;
-}

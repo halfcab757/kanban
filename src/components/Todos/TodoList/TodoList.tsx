@@ -50,7 +50,7 @@ const TodoList: React.FC<{
     </div>
   );
 
-  let itemsList = (
+  let todosList = (
     <Fragment>
       <ul className={classes.todolist__list}>
         {items.length > 0 &&
@@ -90,11 +90,11 @@ const TodoList: React.FC<{
     </div>
   );
 
-  let itemListPlaceholder = (
+  let todosListPlaceholder = (
     <div className={classes.placeholder}>
       <p>
-        THIS LIST IS EMPTY RIGHT NOW.
-        <br /> ADD A NEW TODO
+        This list is currently empty.
+        <br /> Add a new TODO.
       </p>
       <Button
         type="submit"
@@ -108,19 +108,22 @@ const TodoList: React.FC<{
   );
 
   if (props.title === 'DOING' || props.title === 'DONE') {
-    itemListPlaceholder = (
+    todosListPlaceholder = (
       <div className={classes.placeholder}>
         <p>
-          THIS LIST IS EMPTY RIGHT NOW.
-          <br /> KEEP WORKING ON YOUR TODOS
+          This list is currently empty.
+          <br /> Keep working on your TODOs.
         </p>
       </div>
     );
   }
 
-  const listCssClasses = `${classes.scrollable} ${
-    (!props.showItems || items.length === 0) && classes.notvisible
-  }`;
+  const todosListContainer =
+    props.showItems && items.length > 0 ? (
+      <div className={classes.scrollable}>
+        {props.showItems && items.length > 0 && todosList}
+      </div>
+    ) : null;
 
   return (
     <div className={classes.todolist}>
@@ -135,14 +138,14 @@ const TodoList: React.FC<{
           />
         </div>
       )}
-      <div className={listCssClasses}>
-        {props.showItems && items.length > 0 && itemsList}
-      </div>
-
-      {props.showItems && props.title === 'DONE' && items.length > 0 && clearFinsishedTodosElement}
+      {todosListContainer}
+      {props.showItems &&
+        props.title === 'DONE' &&
+        items.length > 0 &&
+        clearFinsishedTodosElement}
       {props.showItems && endOfList < items.length && showMoreButton}
       {props.showItems && endOfList > 3 && ShowLessButton}
-      {props.showItems && items.length === 0 && itemListPlaceholder}
+      {props.showItems && items.length === 0 && todosListPlaceholder}
     </div>
   );
 };

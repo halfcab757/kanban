@@ -11,7 +11,6 @@ import { TodosContext } from './store/todos-context';
 
 import classes from './App.module.css';
 
-
 const App = () => {
   const [showAbout, setShowAbout] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);

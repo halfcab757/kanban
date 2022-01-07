@@ -83,11 +83,11 @@ const Button: React.FC<{
   let buttonCssClasses = `${classes.button}`;
 
   if (props.action === 'START-TO-ADD') {
-    buttonCssClasses = `${classes.button} ${classes.addbtn}`;
+    buttonCssClasses = `${classes.button} ${classes['add-btn']}`;
   }
 
   if (props.action === 'CONFIRM' || props.action === 'CANCEL-FORM') {
-    buttonCssClasses = `${classes.button} ${classes.formbtn}`;
+    buttonCssClasses = `${classes.button} ${classes['form-btn']}`;
   }
 
   if (
@@ -96,26 +96,21 @@ const Button: React.FC<{
     props.action === 'LESS' ||
     props.action === 'CLEAR-LIST'
   ) {
-    buttonCssClasses = `${classes.button} ${classes.listbtn}`;
+    buttonCssClasses = `${classes.button} ${classes['list-btn']}`;
   }
 
-  if (
-    props.action === 'CONFIRM' &&
-    props.tipText === 'Check this app'
-  ) {
-    buttonCssClasses = `${classes.button} ${classes.welcomebtn}`;
+  if (props.action === 'CONFIRM' && props.tipText === 'Check this app') {
+    buttonCssClasses = `${classes.button} ${classes['welcome-btn']}`;
   }
 
-  let tipCssClasses = `${classes.tip} ${classes.edittip}`;
+  let tipCssClasses = `${classes.tip} ${classes['edit-tip']}`;
 
   if (props.action === 'EDIT' || props.action === 'CANCEL') {
-    tipCssClasses = `${classes.tip} ${classes.selecttip}`;
+    tipCssClasses = `${classes.tip} ${classes['select-tip']}`;
   }
 
-  if (
-    props.action === 'START-TO-ADD'
-  ) {
-    tipCssClasses = `${classes.tip} ${classes.addtip}`;
+  if (props.action === 'START-TO-ADD') {
+    tipCssClasses = `${classes.tip} ${classes['add-tip']}`;
   }
 
   if (
@@ -123,11 +118,11 @@ const Button: React.FC<{
     props.action === 'LESS' ||
     props.action === 'CLEAR-LIST'
   ) {
-    tipCssClasses = `${classes.tip} ${classes.showtip}`;
+    tipCssClasses = `${classes.tip} ${classes['show-tip']}`;
   }
 
   if (props.action === 'CONFIRM' || props.action === 'CANCEL-FORM') {
-    tipCssClasses = `${classes.tip} ${classes.formtip}`;
+    tipCssClasses = `${classes.tip} ${classes['form-tip']}`;
   }
 
   const tipBox = (

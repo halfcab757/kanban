@@ -12,7 +12,7 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
   const todosCtx = useContext(TodosContext);
 
   let editActions = (
-    <div className={classes.actionsedit}>
+    <div className={`${classes.actions} ${classes['actions-edit']}`}>
       <Button
         tipText="MOVE TO 'DOING'"
         type="button"
