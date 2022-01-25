@@ -36,7 +36,7 @@ const About: React.FC = () => {
         <span className={classes.firstletter}>K</span>eeping that many details
         in mind was a nice challenge - e.g. making sure that the app looks good
         and works fine on mobile and desktop devices. Doing some optimization by re-factoring code and adding lazy loading was a helpful
-        practice for me, too.
+        practice for me, too. I also got familiar with AWS when I deployed this app.
       </p>
       <p>
         <span className={classes.firstletter}>I</span> am happy with this
