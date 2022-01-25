@@ -39,7 +39,7 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
 
   if (props.status === 'DOING') {
     editActions = (
-      <div className={classes.actionsedit}>
+      <div className={`${classes.actions} ${classes['actions-edit']}`}>
         <Button
           tipText="MOVE TO 'TODO'"
           type="button"
@@ -67,7 +67,7 @@ const TodoItem: React.FC<{ title: string; status: string; id: string, color: str
 
   if (props.status === 'DONE') {
     editActions = (
-      <div className={classes.actionsedit}>
+      <div className={`${classes.actions} ${classes['actions-edit']}`}>
         <Button
           tipText="MOVE TO 'DOING'"
           type="button"
