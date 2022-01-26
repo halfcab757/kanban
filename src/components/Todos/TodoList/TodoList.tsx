@@ -39,17 +39,6 @@ const TodoList: React.FC<{
     items = props.items.filter((item) => item.status === 'DONE');
   }
 
-  const clearFinsishedTodosElement = (
-    <div className={[classes.actions, classes.clear].join(' ')}>
-      <Button
-        type="button"
-        action="CLEAR-LIST"
-        tipText="CLEAR LIST"
-        clickHandler={todosCtx.updatingTodosHandler.bind(null, 'CLEAR')}
-      />
-    </div>
-  );
-
   let todosList = (
     <Fragment>
       <ul className={classes.todolist__list}>
@@ -79,7 +68,7 @@ const TodoList: React.FC<{
     </div>
   );
 
-  const ShowLessButton = (
+  const showLessButton = (
     <div className={classes.actions}>
       <Button
         type="button"
@@ -87,6 +76,33 @@ const TodoList: React.FC<{
         tipText="SHOW LESS"
         clickHandler={showLessItemsHandler}
       />
+    </div>
+  );
+
+  const clearFinsishedTodosElement = (
+    <div className={[classes.actions, classes.clear].join(' ')}>
+      <Button
+        type="button"
+        action="CLEAR-LIST"
+        tipText="CLEAR LIST"
+        clickHandler={todosCtx.updatingTodosHandler.bind(null, 'CLEAR')}
+      />
+      {endOfList < items.length && (
+              <Button
+              type="button"
+              action="MORE"
+              tipText="SHOW MORE"
+              clickHandler={showMoreItemsHandler}
+            />
+      )}
+      {endOfList > 3 && (
+              <Button
+              type="button"
+              action="LESS"
+              tipText="SHOW LESS"
+              clickHandler={showLessItemsHandler}
+            />
+      )}
     </div>
   );
 
@@ -125,8 +141,10 @@ const TodoList: React.FC<{
       </div>
     ) : null;
 
+    const todolistCssClasses = `${classes.todolist} ${props.title === 'DONE' && classes.finishedList}`;
+
   return (
-    <div className={classes.todolist}>
+    <div className={todolistCssClasses}>
       <h2 className={classes.todolist__title}>{props.title}</h2>
       {!props.showItems && (
         <div className={classes.actions}>
@@ -143,8 +161,8 @@ const TodoList: React.FC<{
         props.title === 'DONE' &&
         items.length > 0 &&
         clearFinsishedTodosElement}
-      {props.showItems && endOfList < items.length && showMoreButton}
-      {props.showItems && endOfList > 3 && ShowLessButton}
+      {props.showItems && props.title !== 'DONE' && endOfList < items.length && showMoreButton}
+      {props.showItems && props.title !== 'DONE' && endOfList > 3 && showLessButton}
       {props.showItems && items.length === 0 && todosListPlaceholder}
     </div>
   );

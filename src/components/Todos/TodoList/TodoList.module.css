@@ -49,6 +49,14 @@
     padding: 0;
 }
 
+.finishedList {
+    height: 540px;
+}
+
+.finishedList .scrollable {
+    height: 350px;
+}
+
 .scrollable {
     overflow-y: auto;
     overflow-x: hidden;
@@ -160,6 +168,7 @@
     position: absolute;
     bottom: 10px;
     left: calc(50% - 110px);
+    flex-direction: column;
 }
 
 @media (min-width: 850px) {
