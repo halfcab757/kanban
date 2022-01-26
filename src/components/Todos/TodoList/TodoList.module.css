@@ -49,11 +49,11 @@
     padding: 0;
 }
 
-.finishedList {
-    height: 540px;
+.finished {
+    height: 550px;
 }
 
-.finishedList .scrollable {
+.finished .scrollable {
     height: 350px;
 }
 

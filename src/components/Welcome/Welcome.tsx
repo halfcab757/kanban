@@ -9,11 +9,11 @@ const Welcome: React.FC<{onClose: () => void;}> = (props) => {
       <div className={classes.welcome}>
         <h2>Thanks for taking a look at my Kanban web app!</h2>
         <p>
-          I built it in December 2021 to practice React in combination with
+          I built it mostly in December 2021 to practice React in combination with
           TypeScript.
         </p>
         <p>
-          You will find a link to my code for this web app as well as my contact in the "About this app" section.
+          You will find my contact in the "About this app" section as well as the according code on my github-profile.
         </p>
         <p>
            I would like to hear your feedback!

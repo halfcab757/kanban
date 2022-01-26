@@ -45,7 +45,7 @@ const About: React.FC = () => {
       </p>
       <p>
         <span className={classes.firstletter}>F</span> eel free to take a closer look at this app by 
-        checking out it's corresponding code on my github-profile: https://github.com/halfcab757/kanban
+        checking out it's corresponding code on <a target="_blank" rel="noreferrer" href="https://github.com/halfcab757/kanban">my github-profile</a>.
       </p>
       <h2>Let's get in contact</h2>
       <p>

@@ -141,7 +141,7 @@ const TodoList: React.FC<{
       </div>
     ) : null;
 
-    const todolistCssClasses = `${classes.todolist} ${props.title === 'DONE' && classes.finishedList}`;
+    const todolistCssClasses = `${classes.todolist} ${props.showItems && props.title === 'DONE' && props.items.length > 0 && classes.finished}`;
 
   return (
     <div className={todolistCssClasses}>
