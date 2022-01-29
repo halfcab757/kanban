@@ -8,8 +8,10 @@ import { TodosContext } from '../../../store/todos-context';
 
 import classes from './TodoList.module.css';
 
+type Status = 'TO DO' | 'DOING' | 'DONE';
+
 const TodoList: React.FC<{
-  title: string;
+  title: Status;
   items: Todo[];
   showItems: boolean;
   onShow: (listTitle: string) => void;
@@ -25,19 +27,25 @@ const TodoList: React.FC<{
     setEndOfList(3);
   };
 
-  let items: Todo[] = [];
+  const getItemsByStatus = (listTitle: Status) => {
+    let items: Todo[] = [];
 
-  if (props.title === 'TO DO') {
-    items = props.items.filter((item) => item.status === 'NEW');
+    if (listTitle === 'TO DO') {
+      items = props.items.filter((item) => item.status === 'NEW');
+    }
+  
+    if (listTitle === 'DOING') {
+      items = props.items.filter((item) => item.status === 'DOING');
+    }
+  
+    if (listTitle === 'DONE') {
+      items = props.items.filter((item) => item.status === 'DONE');
+    }
+
+    return items;
   }
 
-  if (props.title === 'DOING') {
-    items = props.items.filter((item) => item.status === 'DOING');
-  }
-
-  if (props.title === 'DONE') {
-    items = props.items.filter((item) => item.status === 'DONE');
-  }
+  const items: Todo[] = getItemsByStatus(props.title);
 
   let todosList = (
     <Fragment>

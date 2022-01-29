@@ -7,15 +7,12 @@ enum Status {
   'DONE' = 'DONE'
 }
 
+type AllActions = 'ADD' | 'DELETE' | 'EDIT' | 'CLEAR';
+type AllActionsAndNull = 'ADD' | 'DELETE' | 'EDIT' | 'CLEAR' | null;
+
 const DUMMY_TODOS = [
   new Todo('Move TODOs from list to list', Status.NEW, '#c7ee4f'),
   new Todo('Add and delete a TODO', Status.NEW, '#ee4fc7'),
-  new Todo('Read the "About" section', Status.NEW, '#c7ee4f'),
-  // new Todo(
-  //   'Check the code on github - link in "About" section',
-  //   Status.NEW,
-  //   '#ee4fc7'
-  // ),
   new Todo('Contact me on LinkedIn - link in "About" section', Status.NEW, '#c7ee4f')
 ];
 
@@ -24,12 +21,12 @@ export const TodosContext = React.createContext<{
   selectedItem: Todo | null;
   startEditingHandler: (itemId: string) => void;
   cancelEditingHandler: () => void;
-  isUpdatingTodos: 'ADD' | 'DELETE' | 'EDIT' | 'CLEAR' | null;
+  isUpdatingTodos: AllActionsAndNull,
   updatingTodosHandler: (
-    action: 'ADD' | 'DELETE' | 'EDIT' | 'CLEAR' | null
+    action: AllActionsAndNull
   ) => void;
   updateTodosHandler: (
-    action: 'ADD' | 'DELETE' | 'EDIT' | 'CLEAR',
+    action: AllActions,
     newTodo: Todo | null,
     newStatus: 'NEW' | 'DOING' | 'DONE' | null
   ) => void;
@@ -40,10 +37,10 @@ export const TodosContext = React.createContext<{
   cancelEditingHandler: () => {},
   isUpdatingTodos: null,
   updatingTodosHandler: (
-    action: 'ADD' | 'DELETE' | 'EDIT' | 'CLEAR' | null
+    action: AllActionsAndNull
   ) => {},
   updateTodosHandler: (
-    action: 'ADD' | 'DELETE' | 'EDIT' | 'CLEAR',
+    action: AllActions,
     newTodo: Todo | null,
     newStatus: 'NEW' | 'DOING' | 'DONE' | null
   ) => {}
@@ -53,11 +50,11 @@ const TodosContextProvider: React.FC = (props) => {
   const [items, setItems] = useState(DUMMY_TODOS);
   const [selectedItem, setSelectedItem] = useState<Todo | null>(null);
   const [isUpdatingTodos, setIsUpdatingTodos] = useState<
-    'ADD' | 'DELETE' | 'EDIT' | 'CLEAR' | null
+    AllActionsAndNull
   >(null);
 
   const updatingTodosHandler = (
-    action: 'ADD' | 'DELETE' | 'EDIT' | 'CLEAR' | null
+    action: AllActionsAndNull
   ) => {
     setIsUpdatingTodos(action);
     if (!action) {
@@ -66,12 +63,12 @@ const TodosContextProvider: React.FC = (props) => {
   };
 
   const updateTodosHandler = (
-    action: 'ADD' | 'DELETE' | 'EDIT' | 'CLEAR',
+    action: AllActions,
     newTodo: Todo | null,
     newStatus: 'NEW' | 'DOING' | 'DONE' | null
   ) => {
-    console.log('update todos runs');
     let updatedItems: Todo[] = [];
+
     switch (action) {
       case 'ADD':
         if (newTodo) {
@@ -87,7 +84,6 @@ const TodosContextProvider: React.FC = (props) => {
         setItems(updatedItems);
         break;
       case 'EDIT':
-        console.log('edit in updateTodosHandler');
         if (!selectedItem) {
           return;
         }

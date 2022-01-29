@@ -40,7 +40,7 @@ const About: React.FC = () => {
       </p>
       <p>
         <span className={classes.firstletter}>I</span> am happy with this
-        project, though I know it is not perfect, e.g. some components got a bit too big. To improve that in the future I will split responsibilites even more by creating more specified components. The lessons I learned by
+        project, though I know it is not perfect, e.g. some components got a bit too big. To improve that in the future I will e.g. split responsibilites even more. The lessons I learned by
         building it will help during my next projects.
       </p>
       <p>

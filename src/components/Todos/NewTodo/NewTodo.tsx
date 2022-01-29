@@ -22,7 +22,6 @@ const NewTodo: React.FC = () => {
   const todoInputMaxLength = 20;
 
   const validateAndTransformInputText = () => {
-    console.log('validate runs');
     const todoInputText = todoInputRef.current!.value.trim();
     if (todoInputText.length < todoInputMinLength) {
       setHasError(true);
@@ -54,6 +53,14 @@ const NewTodo: React.FC = () => {
     return backgroundColor;
   };
 
+  const formAndItemBackground = useMemo(() => getRandomBackgroundColor(), []);
+
+  const createAndStoreNewTodo = (todoText: string) => {
+    const newTodo = new Todo(todoText, 'NEW', formAndItemBackground);
+    todosCtx.updateTodosHandler('ADD', newTodo, null);
+    todosCtx.updatingTodosHandler(null);
+  };
+
   const submitHandler = (event: any) => {
     event.preventDefault();
 
@@ -61,15 +68,13 @@ const NewTodo: React.FC = () => {
     if (!todoInputText) {
       return;
     }
-    const newTodo = new Todo(todoInputText, 'NEW', formAndItemBackground);
-    todosCtx.updateTodosHandler('ADD', newTodo, null);
+
+    createAndStoreNewTodo(todoInputText);
     todoInputRef.current!.value = '';
-    todosCtx.updatingTodosHandler(null);
   };
 
   let inputCssClasses = `${classes.input} ${hasError && classes.invalid}`;
-  const formAndItemBackground = useMemo(() => getRandomBackgroundColor(), []);
-
+  
   let errorMessageCssClasses = `${classes['error-message']} ${
     hasError && classes.visible
   }`;
